@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.demoapp.activitydemo">
+
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ActivityDemo">
+        <activity
+            android:name=".MainActivity"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.demoapp.activitydemo.ACTION1" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="http" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".SecondActivity"
+            android:label="SecondActivity"
+            android:exported="false"
+            >
+        </activity>
+
+        <activity-alias
+            android:name=".ThirdActivity"
+            android:enabled="false"
+            android:exported="true"
+            android:targetActivity="com.demoapp.activitydemo.SecondActivity">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity-alias>
+
+        <activity
+            android:name=".FourthActivity"
+            android:exported="true"
+            android:taskAffinity=".FourthActivity"
+            android:label="FourthActivity"
+            android:immersive="true">
+        </activity>
+
+    </application>
+
+</manifest>

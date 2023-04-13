@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/create_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create File"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/write_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Write File"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/read_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Read File"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/grant_uri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="授予权限"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/share_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="共享文件"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test"
+        android:textAllCaps="false" />
+
+</LinearLayout>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    >
+
+    <Button
+        android:id="@+id/start_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Start Service"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/stop_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Stop Service"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/bind_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Bind service"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/unbind_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Unbind service"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/start_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Start Download"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/pause_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Pause download"/>
+
+    <Button
+        android:id="@+id/continue_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Continue download"/>
+
+    <Button
+        android:id="@+id/invoke_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Invoke Func"
+        android:textAllCaps="false"
+        />
+
+
+</LinearLayout>

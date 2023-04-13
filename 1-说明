@@ -1,0 +1,6 @@
+
+AppDemo             一个Demo模板
+BasicActivity       Android Studio默认的BasicActivity
+FileDemo            文件创建、写入、读取及对外分享（FileProvider）
+LibDemo             生成lib库文件
+LibTestDemo         测试生成的lib库文件是否可以正常使用

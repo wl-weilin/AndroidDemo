@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">HandWriteDemo</string>
+    <string name="button_width">30dp</string>
+</resources>

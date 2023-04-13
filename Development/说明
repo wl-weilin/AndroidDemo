@@ -1,0 +1,32 @@
+Development APP源码位于${源码根目录}/development/apps/Development
+作用：用于复现一些常见现象
+说明：本Development.apk编译自android-13.0.0_r30
+注意：无法直接在Android Studio中编译为APK，需要在源码目录下编译。
+
+编译命令：
+cd ${源码根目录}
+source build/envsetup.sh
+lunch <product_name>-<build_variant>
+mmm development/apps/Development
+
+安装：
+adb install Development.apk
+包名：com.android.development
+UID：1000
+
+输出：
+out/target/product/${product_name}/system/app/Development/Development.apk
+
+dumpsys activity processes信息：
+  *APP* UID 1000 ProcessRecord{c8c43ff 26312:com.android.development/1000}
+    user #0 uid=1000 gids={2001, 1065, 3002, 3003, 3001, 3007, 1021, 1000, 2002, 1015, 1023, 1010, 1024, 1007, 3006, 1000, 9997, 1015, 1078, 1079, 1077}
+    mRequiredAbi=arm64-v8a instructionSet=null
+    dir=/data/app/~~Hs_UA2yKHhqMPEZ7Feh5kA==/com.android.development-GRLazdyl2AiO4hlSB4kAXg==/base.apk publicDir=/data/app/~~Hs_UA2yKHhqMPEZ7Feh5kA==/com.android.development-GRLazdyl2AiO4hlSB4kAXg==/base.apk data=/data/user/0/com.android.development
+    packageList={com.android.development}
+    packageDependencies={com.miui.contentcatcher, com.miui.catcherpatch}
+    compat={420dpi}
+    thread=android.app.IApplicationThread$Stub$Proxy@4780cc0
+    pid=26312
+    
+其它：com.android.development只是uid与system_process相同,Pid不同。
+  *PERS* UID 1000 ProcessRecord{2e69353 2469:system/1000}
