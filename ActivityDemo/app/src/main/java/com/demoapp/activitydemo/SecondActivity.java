@@ -11,7 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-public class SecondActivity extends AppCompatActivity implements Application.ActivityLifecycleCallbacks {
+public class SecondActivity extends AppCompatActivity {
     public static int RESULT_CODE = 2;
     String TAG = "SecondActivity";
 
@@ -56,37 +56,10 @@ public class SecondActivity extends AppCompatActivity implements Application.Act
     }
 
     @Override
-    public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
-
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
+        onBackPressed();
     }
 
-    @Override
-    public void onActivityStarted(@NonNull Activity activity) {
-
-    }
-
-    @Override
-    public void onActivityResumed(@NonNull Activity activity) {
-
-    }
-
-    @Override
-    public void onActivityPaused(@NonNull Activity activity) {
-
-    }
-
-    @Override
-    public void onActivityStopped(@NonNull Activity activity) {
-
-    }
-
-    @Override
-    public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {
-
-    }
-
-    @Override
-    public void onActivityDestroyed(@NonNull Activity activity) {
-
-    }
 }

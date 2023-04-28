@@ -13,7 +13,6 @@
         android:theme="@style/Theme.ServiceDemo">
         <service
             android:name=".MyService"
-
             android:enabled="true"
             android:exported="true">
             <intent-filter>

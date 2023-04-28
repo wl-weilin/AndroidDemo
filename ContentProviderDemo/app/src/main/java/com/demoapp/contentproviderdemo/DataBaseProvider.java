@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.RemoteException;
 import android.util.Log;
 
 import static com.demoapp.contentproviderdemo.MyDatabaseHelper.DatabaseName;
@@ -155,6 +156,9 @@ public class DataBaseProvider extends ContentProvider {
             Log.d(TAG, context.toString());
             bundle.putString("key", "调用method1成功！");
             return bundle;
+        }else if(method.equals("method2")){
+            throw new RuntimeException("异常测试");
+
         }
         return null;
     }

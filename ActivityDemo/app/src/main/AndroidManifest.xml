@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.demoapp.activitydemo">
+    package="com.demoapp.activitydemo"
+>
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -10,6 +11,7 @@
         android:theme="@style/Theme.ActivityDemo">
         <activity
             android:name=".MainActivity"
+
             android:enabled="true"
             android:exported="true">
             <intent-filter>

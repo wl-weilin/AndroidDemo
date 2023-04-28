@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.get_type).setOnClickListener(v -> {
             Uri uri = Uri.parse(uriString);
-            String mime=getContentResolver().getType(uri);
+            String mime = getContentResolver().getType(uri);
             Log.d(TAG, "mime = " + mime);
         });
 
@@ -132,10 +132,10 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.call).setOnClickListener(v -> {
             Bundle bundle = getContentResolver().call(Authority,
-                    "method1", null, null);
+                    "method2", null, null);
             Log.d(TAG, bundle.toString());
             String result = bundle.getString("key");
-            Log.d(TAG, result);
+            Log.d(TAG, result == null ? "null" : result);
         });
 
         findViewById(R.id.by_intent).setOnClickListener(v -> {
@@ -251,3 +251,4 @@ public class MainActivity extends AppCompatActivity {
         getContentResolver().insert(uri, values);
     }
 }
+

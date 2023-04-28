@@ -1,29 +1,35 @@
 package com.demoapp.activitydemo;
 
 
+import static android.content.pm.ActivityInfo.CONFIG_LOCALE;
+import static android.content.pm.ActivityInfo.CONFIG_ORIENTATION;
+
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Binder;
 import android.os.Bundle;
 import android.util.Log;
 
 
 public class MainActivity extends AppCompatActivity {
-    private final String TAG = "ActivityDemo";
+    private final String TAG = "ActivityDemoMain";
     public static int REQUEST_CODE = 1;
     ActivityResultLauncher<Intent> launcher;
-
+    private Configuration oldConfig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        oldConfig = getResources().getConfiguration();
 //        registerReturn();
 
         findViewById(R.id.activity_local).setOnClickListener(v -> {
@@ -40,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.button2).setOnClickListener(v -> {
             Intent intent = new Intent(this, SecondActivity.class);
-            registerReturn();
+//            registerReturn();
         });
     }
 
@@ -61,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openOtherApp() {
+        // 方法1
         Intent intent1 = new Intent();
         intent1.setClassName("com.demoapp.notificationdemo",
                 "com.demoapp.notificationdemo.MainActivity");
@@ -112,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//        finish();
         Log.d(TAG, "onResume");
     }
 
@@ -126,6 +132,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "onDestroy");
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Log.d(TAG, "onConfigurationChanged");
+        // 有变化的config在响应的掩码位返回1
+        int diff = newConfig.diff(oldConfig);
+        if ((diff & CONFIG_ORIENTATION) != 0) {
+            Log.d(TAG, "屏幕方向改变！");
+        }
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Log.d(TAG, "变更为横屏！");
+        }
+        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            Log.d(TAG, "变更为竖屏！");
+        }
+        if ((diff & CONFIG_LOCALE) != 0) {
+            Log.d(TAG, "语言改变！");
+        }
+        oldConfig = new Configuration(newConfig);
     }
 }
 
