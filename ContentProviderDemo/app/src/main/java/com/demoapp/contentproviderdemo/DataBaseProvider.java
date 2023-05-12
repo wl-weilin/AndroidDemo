@@ -1,6 +1,7 @@
 package com.demoapp.contentproviderdemo;
 
 import android.content.ContentProvider;
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -100,6 +101,8 @@ public class DataBaseProvider extends ContentProvider {
             case Person_Item:
                 long newId = db.insert(TableName, null, values);
                 uriReturn = Uri.parse("content://" + AUTHORITY + "/" + TableName + "/" + newId);
+                int NOTIFY_NO_DELAY = 1 << 15;
+                getContext().getContentResolver().notifyChange(uri, null);
                 break;
             default:
                 break;
@@ -120,6 +123,8 @@ public class DataBaseProvider extends ContentProvider {
                 //以路径分隔符"/"分割uri字符串，返回id
                 String Id = uri.getPathSegments().get(1);
                 deletedRows = db.delete(TableName, "id = ?", new String[]{Id});
+                getContext().getContentResolver().notifyChange(uri, null,
+                        ContentResolver.NOTIFY_DELETE);
                 break;
             default:
                 break;
@@ -156,7 +161,7 @@ public class DataBaseProvider extends ContentProvider {
             Log.d(TAG, context.toString());
             bundle.putString("key", "调用method1成功！");
             return bundle;
-        }else if(method.equals("method2")){
+        } else if (method.equals("method2")) {
             throw new RuntimeException("异常测试");
 
         }

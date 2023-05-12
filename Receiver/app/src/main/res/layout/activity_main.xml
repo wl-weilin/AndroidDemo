@@ -6,19 +6,19 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/mybotton1"
+        android:id="@+id/action1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="注册1"
+        android:text="动态注册 ACTION1"
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/mybotton2"
+        android:id="@+id/action2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="注册2"
+        android:text="动态注册 ACTION2"
         android:textAllCaps="false" />
 
     <Button

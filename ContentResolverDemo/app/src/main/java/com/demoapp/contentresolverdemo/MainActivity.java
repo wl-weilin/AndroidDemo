@@ -1,39 +1,32 @@
 package com.demoapp.contentresolverdemo;
 
+import android.app.ActivityManager;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
+    private final String TAG = "ResolverDemoMain";
+
     // 数据库名与表名，注意与Provider端一致
     public static final String DatabaseName = "People.db";
     public static final String TableName = "Person";
     public static final String Authority = "com.demoapp.contentproviderdemo.provider";
     public static final String uriString = "content://" + Authority + "/" + TableName + "/";
-
-    private final String TAG = "ResolverDemoMain";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +34,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         readFileProvider();
 
-        EditText text_id = (EditText) findViewById(R.id.text_id);
-        EditText text_name = (EditText) findViewById(R.id.text_name);
+        MyContentObserver myObserver = new MyContentObserver(null);
+        getContentResolver().registerContentObserver(Uri.parse(uriString), true, myObserver);
+
+        EditText text_id = findViewById(R.id.text_id);
+        EditText text_name = findViewById(R.id.text_name);
 
         findViewById(R.id.init_data).setOnClickListener(v -> {
             initData();
@@ -79,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //添加数据，即添加一条数据到目标数据库中
-        findViewById(R.id.add_data).setOnClickListener(v -> {
+        findViewById(R.id.insert_data).setOnClickListener(v -> {
             Uri uri = Uri.parse(uriString);
 
             // 从编辑框中获取数据
@@ -100,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //删除数据
+        //删除数据，如果不指定则删除全部
         findViewById(R.id.delete_data).setOnClickListener(v -> {
             String input_id = text_id.getText().toString();
             Uri uri = Uri.parse(uriString + input_id);
@@ -129,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "数据更新成功！");
             }
         });
-
+        // 调用Provider中的call()
         findViewById(R.id.call).setOnClickListener(v -> {
             Bundle bundle = getContentResolver().call(Authority,
                     "method2", null, null);
@@ -138,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, result == null ? "null" : result);
         });
 
+        //通过Intent打开指定数据类型的Activity，会调用到getType()
         findViewById(R.id.by_intent).setOnClickListener(v -> {
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_MAIN);
@@ -146,11 +143,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // 获取设备的OAID
         findViewById(R.id.get_oaid).setOnClickListener(v -> {
             String oaid = getOAID();
             Log.d(TAG, oaid);
         });
 
+        // 通过访问android:exported="true"的Provider，获取到FileProvider的授权
         findViewById(R.id.grant_auth).setOnClickListener(v -> {
             try {
                 Bundle bundle = getContentResolver().call("com.demoapp.filedemo.provider",
@@ -161,19 +160,16 @@ public class MainActivity extends AppCompatActivity {
             } catch (Exception e) {
                 Log.d(TAG, e.toString());
             }
-
-//            Uri uri=Uri.parse(result_uri);
-//            Uri uri = Uri.parse("content://com.demoapp.contentproviderdemo.fileprovider/share_name/myfile.txt");
-//            readFile(uri);
         });
 
+        // 读取FileProvider文件中的内容
         findViewById(R.id.read_file).setOnClickListener(v -> {
             Uri uri = Uri.parse("content://com.demoapp.filedemo.fileprovider/share_name/myfile.txt");
             readFile(uri);
         });
     }
 
-    //读取由其它APP分享的文件
+    //通过Activity分享到此Activity中，调用此方法读取由其它APP分享的文件
     public void readFileProvider() {
         Intent intent = getIntent();
         if (intent != null && intent.getData() != null) {
@@ -249,6 +245,10 @@ public class MainActivity extends AppCompatActivity {
         values.put("id", 1003);
         values.put("name", "孙三");
         getContentResolver().insert(uri, values);
+    }
+
+    public void abc() {
+        ActivityManager manager=(ActivityManager)getSystemService(ACTIVITY_SERVICE);
     }
 }
 

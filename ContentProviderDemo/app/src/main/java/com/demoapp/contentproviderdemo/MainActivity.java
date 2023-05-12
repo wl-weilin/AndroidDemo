@@ -1,29 +1,28 @@
 package com.demoapp.contentproviderdemo;
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 
-import android.os.Environment;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import static com.demoapp.contentproviderdemo.MyDatabaseHelper.DatabaseName;
-import static com.demoapp.contentproviderdemo.MyDatabaseHelper.TableName;
 
-import java.io.File;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
+    private final String TAG = "ProviderDemoMain";
     private MyDatabaseHelper dbHelper;
-    private final String TAG = "ProviderDemo";
+
+    public static final String TableName = "Person";
+    public static final String Authority = "com.demoapp.contentproviderdemo.provider";
+    public static final String uriString = "content://" + Authority + "/" + TableName + "/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,95 +30,100 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         dbHelper = new MyDatabaseHelper(this, DatabaseName, null, 2);
 
+        EditText text_id = findViewById(R.id.text_id);
+        EditText text_name = findViewById(R.id.text_name);
+
         findViewById(R.id.create_database).setOnClickListener(v -> {
             //打开数据库，已存在则直接打开，否则创建一个新的数据库
             dbHelper.getWritableDatabase();
         });
 
+        findViewById(R.id.init_data).setOnClickListener(v -> {
+            initData();
+        });
+
         //查询并打印数据
         findViewById(R.id.query_data).setOnClickListener(v -> {
-            SQLiteDatabase db = dbHelper.getReadableDatabase();
+            Uri uri = Uri.parse(uriString);
+            Cursor cursor = getContentResolver().query(uri, null, null,
+                    null, null);
 
-            // 查询表中所有的数据
-            Cursor cursor = db.query(TableName, null, null, null, null, null, null);
-            if (cursor.moveToFirst()) {
-                do { // 遍历Cursor对象，取出数据并打印
-                    String id = cursor.getString(cursor.getColumnIndexOrThrow("id"));
-                    String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
-                    Log.d(TAG, "id=" + id + "; " + "name=" + name);
-                } while (cursor.moveToNext());
+            if (cursor == null) {
+                Log.d(TAG, "cursor = " + cursor);
+                return;
             }
+            Log.d(TAG, "ColumnNames = " + Arrays.toString(cursor.getColumnNames()));
+            int count = 0;
+            //cursor依次指向每一行（表示一条数据），然后获取每一行的每个属性值
+            while (cursor.moveToNext()) {
+                count++;
+                String id = cursor.getString(cursor.getColumnIndexOrThrow("id"));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                Log.d(TAG, "id=" + id + "; " + "name=" + name);
+            }
+
             cursor.close();
+            Log.d(TAG, "count = " + count);
         });
 
         //添加数据
-        findViewById(R.id.add_data).setOnClickListener(v -> {
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
+        findViewById(R.id.insert_data).setOnClickListener(v -> {
+            Uri uri = Uri.parse(uriString);
 
-            long res = -1;   //数据库操作的返回值，判断是否成功
             // 从编辑框中获取数据
-            int input_id = Integer.parseInt(((EditText) findViewById(R.id.text_id)).getText().toString());
-            String input_name = ((EditText) findViewById(R.id.text_name)).getText().toString();
+            String input_id = text_id.getText().toString();
+            String input_name = text_name.getText().toString();
+            if (input_id.equals("") || input_name.equals("")) {
+                Toast.makeText(getApplicationContext(), "id及name不能为空！", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             ContentValues values = new ContentValues();
-            values.put("id", input_id);
+            values.put("id", Integer.parseInt(input_id));
             values.put("name", input_name);
-            // 判断数据有效性和是否存在
-            if (isValid(values) && !isExist(values)) {
-                res = db.insert(TableName, null, values);
-            }
-
-            if (res != -1) {    // 插入结果=-1表示失败
-                Toast.makeText(getApplicationContext(), "Add succeeded", Toast.LENGTH_SHORT).show();
+            if (isValid(values)) {
+                //insert()返回新建行的URL（包含行号），如content://com.demoapp.contentproviderdemo.provider/person/3
+                Uri newUri = getContentResolver().insert(uri, values);
+                Log.d(TAG, newUri.toString());
             }
         });
 
-        //删除符合条件的一些数据
+        //删除数据
         findViewById(R.id.delete_data).setOnClickListener(v -> {
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
-            // 按照ID删除
-            int input_id = Integer.parseInt(((EditText) findViewById(R.id.text_id)).getText().toString());
-            // 删除id = input_id的人
-            int res = db.delete(TableName, "id = ?", new String[]{String.valueOf(input_id)});
-            if (res > 0)
-                Toast.makeText(getApplicationContext(), "Delete succeeded", Toast.LENGTH_SHORT).show();
-            else Toast.makeText(getApplicationContext(), "没有数据被删除！", Toast.LENGTH_SHORT).show();
-        });
-
-        //删除全部数据
-        findViewById(R.id.delete_all).setOnClickListener(v -> {
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
-            int res = db.delete(TableName, null, null);
-            if (res > 0)
-                Toast.makeText(getApplicationContext(), "Delete succeeded", Toast.LENGTH_SHORT).show();
-            else
-                Toast.makeText(getApplicationContext(), "没有数据被删除！", Toast.LENGTH_SHORT).show();
+            String input_id = text_id.getText().toString();
+            Uri uri = Uri.parse(uriString + input_id);
+            int res = getContentResolver().delete(uri, null, null);
+            Log.d(TAG, res + "条数据被删除！");
+            Log.d(TAG, String.valueOf(uri));
         });
 
         //更新数据，即修改已存在的数据
         findViewById(R.id.update_data).setOnClickListener(v -> {
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
             // 从编辑框中获取数据
-            int input_id = Integer.parseInt(((EditText) findViewById(R.id.text_id)).getText().toString());
-            String input_name = ((EditText) findViewById(R.id.text_name)).getText().toString();
+            String input_id = text_id.getText().toString();
+            String input_name = text_name.getText().toString();
+            if (input_id.equals("") || input_name.equals("")) {
+                Toast.makeText(getApplicationContext(), "id及name不能为空！", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            //如果不指定newId，则会修改所有数据（newId不初始化默认为0）
+            Uri uri = Uri.parse(uriString + Integer.parseInt(input_id));
             ContentValues values = new ContentValues();
             values.put("name", input_name);
-
-            //将id为input_id的人的名字改为input_name
-            int res = db.update(TableName, values, "id = ?", new String[]{String.valueOf(input_id)});
-            if (res > 0)
-                Toast.makeText(getApplicationContext(), "Update succeeded", Toast.LENGTH_SHORT).show();
+            //更新数据，返回值表示有多少行数据被更新；如果没有指定uri数据，则res=0
+            int res = getContentResolver().update(uri, values, null, null);
+            if (res > 0) {
+                Log.d(TAG, "数据更新成功！");
+            }
         });
 
-        findViewById(R.id.invoke_call).setOnClickListener(v -> {
+        findViewById(R.id.call).setOnClickListener(v -> {
             Bundle bundle=getContentResolver().call("com.demoapp.contentproviderdemo.provider",
                     "getFileUri",null,null);
             Log.d(TAG, bundle.toString());
-        });
-
-        findViewById(R.id.file_activity).setOnClickListener(v -> {
 
         });
-
     }
 
     /**
@@ -141,20 +145,28 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    /**
-     * 某个id的values在数据库中是否已经存在
-     *
-     * @return 存在则返回true
-     */
-    public boolean isExist(ContentValues values) {
-        int input_id = (int) values.get("id");
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.query(TableName, new String[]{"id"}, "id=?",
-                new String[]{String.valueOf(input_id)}, null, null, null);
-        if (cursor.getCount() != 0) {
-            Toast.makeText(getApplicationContext(), "该ID已存在！", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        return false;
+    public void initData() {
+        Uri uri = Uri.parse(uriString);
+        // 删除全部数据
+        int res = getContentResolver().delete(uri, null, null);
+        Log.d(TAG, res + "条数据被删除！");
+
+        ContentValues values = new ContentValues();
+        // 插入第1条数据
+        values.put("id", 1001);
+        values.put("name", "赵一");
+        getContentResolver().insert(uri, values);
+
+        // 插入第2条数据
+        values.clear(); //清除数据
+        values.put("id", 1002);
+        values.put("name", "钱二");
+        getContentResolver().insert(uri, values);
+
+        // 插入第3条数据
+        values.clear(); //清除数据
+        values.put("id", 1003);
+        values.put("name", "孙三");
+        getContentResolver().insert(uri, values);
     }
 }

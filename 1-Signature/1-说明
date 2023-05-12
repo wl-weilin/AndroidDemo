@@ -1,0 +1,7 @@
+
+keytool-importkeypair       给jsk文件添加系统签名的工具，下载自github
+libconscrypt_openjdk_jni.so 通过signapk.jar给APP签名需要用到的库文件
+mykey.jks                   保存签名，AS安装APP时需要用到
+platform.pk8                源码中的签名文件
+platform.x509.pem           源码中的签名文件
+signapk.jar                 源码中的签名文件，通过jar方式签名需要用到

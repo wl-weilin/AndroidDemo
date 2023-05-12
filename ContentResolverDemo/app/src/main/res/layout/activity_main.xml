@@ -51,10 +51,10 @@
         />
 
     <Button
-        android:id="@+id/add_data"
+        android:id="@+id/insert_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Data"
+        android:text="Insert Data"
         android:textAllCaps="false"
         />
 

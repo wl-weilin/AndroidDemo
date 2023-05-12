@@ -3,13 +3,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
+    namespace 'com.demoapp.contentresolverdemo'
+    compileSdkVersion 33
     buildToolsVersion "31.0.0"
 
     defaultConfig {
         applicationId "com.demoapp.contentresolverdemo"
         minSdkVersion 30
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -29,27 +30,12 @@ android {
     buildFeatures {
         viewBinding true
     }
-    signingConfigs {
-        release {
-            storeFile file("../../1-AndroidKey/mykey.jks")
-            storePassword '123456'
-            keyAlias 'key0'
-            keyPassword '123456'
-        }
-
-        debug {
-            storeFile file("../../1-AndroidKey/mykey.jks")
-            storePassword '123456'
-            keyAlias 'key0'
-            keyPassword '123456'
-        }
-    }
 }
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
     implementation 'androidx.navigation:navigation-ui:2.3.5'

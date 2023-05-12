@@ -34,6 +34,14 @@
         android:textAllCaps="false" />
 
     <Button
+        android:id="@+id/init_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset Table"
+        android:textAllCaps="false"
+        />
+
+    <Button
         android:id="@+id/query_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,10 +49,10 @@
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/add_data"
+        android:id="@+id/insert_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Data"
+        android:text="Insert Data"
         android:textAllCaps="false" />
 
     <Button
@@ -55,13 +63,6 @@
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/delete_all"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Delete All"
-        android:textAllCaps="false" />
-
-    <Button
         android:id="@+id/update_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,17 +70,10 @@
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/invoke_call"
+        android:id="@+id/call"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="调用call"
-        android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/file_activity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="File Activity"
         android:textAllCaps="false" />
 
 </LinearLayout>

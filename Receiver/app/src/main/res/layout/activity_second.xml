@@ -7,7 +7,7 @@
     >
 
     <Button
-        android:id="@+id/mybotton2"
+        android:id="@+id/action2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"

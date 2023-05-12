@@ -11,9 +11,10 @@
         android:theme="@style/Theme.ActivityDemo">
         <activity
             android:name=".MainActivity"
-
             android:enabled="true"
-            android:exported="true">
+            android:exported="true"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
