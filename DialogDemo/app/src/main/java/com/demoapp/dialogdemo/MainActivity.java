@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG="DialogDemoMain" ;
     public static Activity mActivity;
 
-    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override // android.content.BroadcastReceiver
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG, "onReceive");
@@ -67,13 +67,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void creatPopupWindow() {
         PopupWindow popupWindow = new PopupWindow(this);
-        View contentView = LayoutInflater.from(this).inflate(R.layout.activity_main, null);
+        View contentView = LayoutInflater.from(this).inflate(R.layout.dialog_layout, null);
         popupWindow.setContentView(contentView);
         popupWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
         popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         popupWindow.setFocusable(true);
-        popupWindow.showAtLocation(findViewById(R.id.popup_window), Gravity.CENTER, 0, 0);
+        popupWindow.showAtLocation(findViewById(R.id.popup_window), Gravity.TOP, 0, 500);
     }
 
 

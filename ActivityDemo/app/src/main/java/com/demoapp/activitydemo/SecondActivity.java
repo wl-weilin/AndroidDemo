@@ -1,12 +1,8 @@
 package com.demoapp.activitydemo;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,7 +23,7 @@ public class SecondActivity extends AppCompatActivity {
             newActivity();
         });
 
-        findViewById(R.id.button2).setOnClickListener(v -> {
+        findViewById(R.id.button1).setOnClickListener(v -> {
             Intent intent = new Intent();
             intent.putExtra("key", "value");
             setResult(RESULT_CODE, intent);
@@ -59,7 +55,7 @@ public class SecondActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume");
-        onBackPressed();
+//        onBackPressed();
     }
 
 }

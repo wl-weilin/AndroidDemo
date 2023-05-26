@@ -19,7 +19,7 @@ public class ThirdActivity extends AppCompatActivity {
 
         });
 
-        findViewById(R.id.button2).setOnClickListener(v -> {
+        findViewById(R.id.button1).setOnClickListener(v -> {
 
         });
 

@@ -16,7 +16,8 @@
         <activity
             android:name=".ActivityDialog"
             android:exported="false"
-            android:theme="@style/DialogTheme3" />
+            android:theme="@style/Theme.DialogDemo" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

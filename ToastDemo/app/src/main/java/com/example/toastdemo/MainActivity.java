@@ -14,8 +14,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         findViewById(R.id.button1).setOnClickListener(v -> {
-            Toast.makeText(getApplicationContext(), "一个Toast", Toast.LENGTH_SHORT).show();
+            showTosst();
         });
+    }
+
+    // 显示普通Toast
+    public void showTosst(){
+        Toast.makeText(getApplicationContext(), "一个Toast", Toast.LENGTH_SHORT).show();
     }
 }
 

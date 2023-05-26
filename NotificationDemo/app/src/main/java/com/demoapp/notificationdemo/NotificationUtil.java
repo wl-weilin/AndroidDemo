@@ -73,8 +73,8 @@ public class NotificationUtil {
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.ic_launcher))
                 .setContentIntent(pendingIntent)  //传入Intent
-//                .setAutoCancel(true)  //点击通知后自动消失
-//                .setOngoing(true)
+                .setAutoCancel(true)  //点击通知后自动消失
+                .setOngoing(true)
         ;
 
         //获取构建好的Notification

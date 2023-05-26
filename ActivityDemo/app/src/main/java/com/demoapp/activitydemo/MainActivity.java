@@ -10,13 +10,13 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.os.Binder;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         oldConfig = getResources().getConfiguration();
 //        registerReturn();
 
@@ -44,9 +45,11 @@ public class MainActivity extends AppCompatActivity {
             openActivityReturn();
         });
 
-        findViewById(R.id.button2).setOnClickListener(v -> {
-            Intent intent = new Intent(this, SecondActivity.class);
-//            registerReturn();
+        findViewById(R.id.button1).setOnClickListener(v -> {
+            Display display = this.getDisplay();
+            Log.d(TAG, "Name:" + display.getName());
+            Log.d(TAG, "DisplayId:" + display.getDisplayId());
+            Log.d(TAG, "Name:" + display.toString());
         });
     }
 
@@ -69,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
     private void openOtherApp() {
         // 方法1
         Intent intent1 = new Intent();
-        intent1.setClassName("com.demoapp.notificationdemo",
-                "com.demoapp.notificationdemo.MainActivity");
+        intent1.setClassName("com.android.camera",
+                "com.android.camera.Camera");
 
         // 方法2
         Intent intent2 = new Intent();
@@ -138,21 +141,28 @@ public class MainActivity extends AppCompatActivity {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         Log.d(TAG, "onConfigurationChanged");
-        // 有变化的config在响应的掩码位返回1
+
+        // 有变化的config在相应的掩码位置为1
         int diff = newConfig.diff(oldConfig);
+        Log.d(TAG, "ConfigDiff = " + Integer.toHexString(diff));
+
         if ((diff & CONFIG_ORIENTATION) != 0) {
             Log.d(TAG, "屏幕方向改变！");
+
+            if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                Log.d(TAG, "变更为横屏！");
+            }
+            if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+                Log.d(TAG, "变更为竖屏！");
+            }
         }
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            Log.d(TAG, "变更为横屏！");
-        }
-        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            Log.d(TAG, "变更为竖屏！");
-        }
+
         if ((diff & CONFIG_LOCALE) != 0) {
             Log.d(TAG, "语言改变！");
         }
+
         oldConfig = new Configuration(newConfig);
+//        new Exception(TAG).printStackTrace();
     }
 }
 
