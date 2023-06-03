@@ -17,8 +17,6 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
         Log.d(TAG, "onCreate");
 
-
-
         findViewById(R.id.Previous).setOnClickListener(v -> {
             newActivity();
         });
@@ -32,10 +30,14 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     private void newActivity() {
-        Intent intent = new Intent(this, SecondActivity.class);
-//        Intent intent = new Intent(this, FourthActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void newTaskActivity() {
+        Intent intent = new Intent(this, FourthActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
         startActivity(intent);
     }
 
@@ -55,7 +57,6 @@ public class SecondActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume");
-//        onBackPressed();
     }
 
 }

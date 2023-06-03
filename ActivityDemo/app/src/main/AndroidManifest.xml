@@ -13,7 +13,8 @@
             android:name=".MainActivity"
             android:enabled="true"
             android:exported="true"
-            android:configChanges="screenSize|orientation"
+            android:launchMode="singleTask"
+            android:configChanges="screenSize|orientation|locale|layoutDirection"
             android:showWhenLocked="true"
             android:turnScreenOn="true">
             <intent-filter>

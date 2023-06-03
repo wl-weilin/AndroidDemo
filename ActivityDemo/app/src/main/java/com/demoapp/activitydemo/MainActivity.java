@@ -14,6 +14,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.hardware.display.DisplayManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
@@ -50,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "Name:" + display.getName());
             Log.d(TAG, "DisplayId:" + display.getDisplayId());
             Log.d(TAG, "Name:" + display.toString());
+
+            DisplayManager manager = (DisplayManager) getSystemService(Context.DISPLAY_SERVICE);
+            Display myDisplay = manager.getDisplay(display.getDisplayId());
+            Log.d(TAG, "Display:" + myDisplay.toString());
         });
     }
 
@@ -112,6 +117,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(TAG, "onRestart");
+    }
 
     @Override
     protected void onStart() {
@@ -126,9 +136,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause");
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
         Log.d(TAG, "onStop");
+        new Exception(TAG).printStackTrace();
     }
 
     @Override
@@ -138,13 +155,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.d(TAG, "onNewIntent");
+    }
+
+    @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         Log.d(TAG, "onConfigurationChanged");
 
         // 有变化的config在相应的掩码位置为1
         int diff = newConfig.diff(oldConfig);
-        Log.d(TAG, "ConfigDiff = " + Integer.toHexString(diff));
+        Log.d(TAG, "ConfigDiff = 0x" + Integer.toHexString(diff));
 
         if ((diff & CONFIG_ORIENTATION) != 0) {
             Log.d(TAG, "屏幕方向改变！");
