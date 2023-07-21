@@ -63,6 +63,16 @@ public class MainActivity extends AppCompatActivity {
             creatDialogActivity();
 //            creatDialogFragment();
         });
+
+        findViewById(R.id.button).setOnClickListener(v -> {
+            openActivity();
+        });
+    }
+
+    private void openActivity() {
+        Intent intent1 = new Intent(this, SecondActivity.class);
+//        intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent1);
     }
 
     public void creatPopupWindow() {

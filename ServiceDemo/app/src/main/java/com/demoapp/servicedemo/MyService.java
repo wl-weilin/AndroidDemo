@@ -23,6 +23,10 @@ public class MyService extends Service {
         Log.d(TAG, "onCreate executed");
         mLocalBinder = new LocalBinder(this);
         mRemoteAidlService = new RemoteAidlService(this);
+
+        Intent intent = new Intent(this, SecondActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     @Override

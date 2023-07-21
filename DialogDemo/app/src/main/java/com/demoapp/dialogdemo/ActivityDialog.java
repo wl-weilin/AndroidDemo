@@ -46,8 +46,9 @@ public class ActivityDialog extends Activity {
         getWindow().setBackgroundDrawable(drawable);
 
         findViewById(R.id.dialog_button_ok).setOnClickListener(v -> {
-            MainActivity.mActivity.finish();
-//            finish();
+//            MainActivity.mActivity.finish();
+            Intent intent1 = new Intent(this, MainActivity.class);
+            startActivity(intent1);
         });
 
         IntentFilter intentFilter = new IntentFilter();

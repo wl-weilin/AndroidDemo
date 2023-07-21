@@ -12,7 +12,7 @@ public class SecondActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        findViewById(R.id.action2).setOnClickListener(v -> {
+        findViewById(R.id.button1).setOnClickListener(v -> {
             Log.d(TAG,myReceiver2.toString());
         });
 

@@ -1,6 +1,5 @@
 package com.demoapp.broadcastreceiver;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -32,14 +31,15 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
         });
 
-        findViewById(R.id.mybotton3).setOnClickListener(v -> {
+        findViewById(R.id.button3).setOnClickListener(v -> {
             Log.d(TAG, getApplicationContext().toString());
-
+            openActivity();
         });
     }
 
     private void openActivity() {
         Intent intent1 = new Intent(this, SecondActivity.class);
+        intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Intent intent2 = new Intent().setClassName("com.android.mms",
                 "com.android.mms.ui.NewMessageActivity");
         startActivity(intent1);

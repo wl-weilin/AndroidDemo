@@ -22,10 +22,10 @@
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/mybotton3"
+        android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Botton3"
+        android:text="Button3"
         android:textAllCaps="false" />
 </LinearLayout>

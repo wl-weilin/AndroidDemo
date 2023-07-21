@@ -46,15 +46,17 @@ public class MainActivity extends AppCompatActivity {
             openActivityReturn();
         });
 
-        findViewById(R.id.button1).setOnClickListener(v -> {
-            Display display = this.getDisplay();
-            Log.d(TAG, "Name:" + display.getName());
-            Log.d(TAG, "DisplayId:" + display.getDisplayId());
-            Log.d(TAG, "Name:" + display.toString());
+        findViewById(R.id.activity_implicit).setOnClickListener(v -> {
+            Intent intent1 = new Intent();
+            intent1.setAction(Intent.ACTION_VIEW);
+            startActivity(intent1);
+        });
 
-            DisplayManager manager = (DisplayManager) getSystemService(Context.DISPLAY_SERVICE);
-            Display myDisplay = manager.getDisplay(display.getDisplayId());
-            Log.d(TAG, "Display:" + myDisplay.toString());
+        findViewById(R.id.button1).setOnClickListener(v -> {
+//            openOtherApp();
+            String caller=null;
+            Integer pid = caller == null ? null : 2;
+//            finish();
         });
     }
 
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         // 方法1
         Intent intent1 = new Intent();
         intent1.setClass(this, SecondActivity.class);
+//        intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         // 方法2
         Intent intent2 = new Intent(this, SecondActivity.class);
@@ -82,11 +85,12 @@ public class MainActivity extends AppCompatActivity {
 
         // 方法2
         Intent intent2 = new Intent();
-        ComponentName componentName = ComponentName.createRelative("com.demoapp.notificationdemo",
-                "com.demoapp.notificationdemo.MainActivity");
+        ComponentName componentName = ComponentName.createRelative("com.demoapp.dialogdemo",
+                "com.demoapp.dialogdemo.MainActivity");
         intent2.setComponent(componentName);
+//        intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        startActivity(intent1);
+        startActivity(intent2);
     }
 
     private void registerReturn() {
@@ -145,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         Log.d(TAG, "onStop");
-        new Exception(TAG).printStackTrace();
+//        new Exception(TAG).printStackTrace();
     }
 
     @Override
@@ -187,5 +191,8 @@ public class MainActivity extends AppCompatActivity {
         oldConfig = new Configuration(newConfig);
 //        new Exception(TAG).printStackTrace();
     }
+
+
+
 }
 

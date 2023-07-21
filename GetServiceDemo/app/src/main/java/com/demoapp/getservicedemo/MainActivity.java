@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.start_service).setOnClickListener(v -> {
             Log.d(TAG, "startForegroundService Executed");
-//            startForegroundService(remoteIntent);
-            startService(remoteIntent);
+            startForegroundService(remoteIntent);
+//            startService(remoteIntent);
         });
 
         findViewById(R.id.stop_service).setOnClickListener(v -> {

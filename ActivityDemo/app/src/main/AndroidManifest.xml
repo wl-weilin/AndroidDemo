@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.demoapp.activitydemo"
->
+    package="com.demoapp.activitydemo">
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -11,12 +10,9 @@
         android:theme="@style/Theme.ActivityDemo">
         <activity
             android:name=".MainActivity"
-            android:enabled="true"
-            android:exported="true"
-            android:launchMode="singleTask"
             android:configChanges="screenSize|orientation|locale|layoutDirection"
-            android:showWhenLocked="true"
-            android:turnScreenOn="true">
+            android:exported="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -30,9 +26,9 @@
 
         <activity
             android:name=".SecondActivity"
-            android:label="SecondActivity"
             android:exported="true"
-            >
+            android:label="SecondActivity">
+
         </activity>
 
         <activity-alias
@@ -40,18 +36,19 @@
             android:enabled="false"
             android:exported="true"
             android:targetActivity="com.demoapp.activitydemo.SecondActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
         </activity-alias>
 
         <activity
             android:name=".FourthActivity"
             android:exported="true"
-            android:taskAffinity=".FourthActivity"
+            android:immersive="true"
             android:label="FourthActivity"
-            android:immersive="true">
+            android:taskAffinity=".FourthActivity">
+
         </activity>
 
     </application>
