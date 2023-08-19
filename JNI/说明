@@ -1,0 +1,12 @@
+DynamicRegDemo
+通过JNI的动态注册方式实现Java函数与Native层函数的对应
+
+NativeDemo
+创建工程时，直接选择Native C++创建的原始工程，用的CMake构建方式
+
+JNIByCMakeDemo
+自己编写的CMake方式构建的Demo
+
+JNIByNDKDemo
+自己编写的NDK方式构建的Demo
+

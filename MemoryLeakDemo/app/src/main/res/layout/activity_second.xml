@@ -15,4 +15,40 @@
         android:textAllCaps="false"
         />
 
+    <Button
+        android:id="@+id/static_leak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Static Leak"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/handler_leak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Handler Leak"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/thread_leak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Thread Leak"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/resource_leak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Resource Leak"
+        android:textAllCaps="false"
+        />
+
 </LinearLayout>

@@ -248,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void abc() {
-        ActivityManager manager=(ActivityManager)getSystemService(ACTIVITY_SERVICE);
+        ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
     }
 }
 
