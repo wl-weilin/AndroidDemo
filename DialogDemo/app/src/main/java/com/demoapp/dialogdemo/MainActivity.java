@@ -65,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.button).setOnClickListener(v -> {
-            openActivity();
+//            openActivity();
+            createFloatingWindow();
         });
     }
 
@@ -163,5 +164,12 @@ public class MainActivity extends AppCompatActivity {
     public void creatDialogFragment() {
         MyFragmentDialog dialogFragment = new MyFragmentDialog();
         dialogFragment.show(getSupportFragmentManager(), "MyDialogFragment");
+    }
+
+    public void createFloatingWindow() {
+        FloatingWindow floatingWindow=new FloatingWindow(this);
+        floatingWindow.createWindowManager();
+        floatingWindow.createDesktopLayout();
+        floatingWindow.showDesk();
     }
 }

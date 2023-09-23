@@ -158,12 +158,11 @@ public class DataBaseProvider extends ContentProvider {
         Bundle bundle = new Bundle();
         if (method.equals("method1")) {
             Context context = getContext();
-            Log.d(TAG, context.toString());
+            Log.d(TAG, "Provider Context = " + context.toString());
             bundle.putString("key", "调用method1成功！");
             return bundle;
         } else if (method.equals("method2")) {
             throw new RuntimeException("异常测试");
-
         }
         return null;
     }

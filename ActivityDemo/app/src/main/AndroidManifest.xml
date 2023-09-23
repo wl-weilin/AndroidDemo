@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.demoapp.activitydemo">
 
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,8 +13,7 @@
         <activity
             android:name=".MainActivity"
             android:configChanges="screenSize|orientation|locale|layoutDirection"
-            android:exported="true"
-            >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -28,19 +29,19 @@
             android:name=".SecondActivity"
             android:exported="true"
             android:label="SecondActivity">
-
         </activity>
 
-        <activity-alias
-            android:name=".ThirdActivity"
-            android:enabled="false"
-            android:exported="true"
-            android:targetActivity="com.demoapp.activitydemo.SecondActivity">
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
-        </activity-alias>
+<!--        <activity-alias-->
+<!--            android:name="ThirdActivity"-->
+<!--            android:label="Alias快捷入口"-->
+<!--            android:enabled="true"-->
+<!--            android:exported="true"-->
+<!--            android:targetActivity="SecondActivity">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity-alias>-->
 
         <activity
             android:name=".FourthActivity"

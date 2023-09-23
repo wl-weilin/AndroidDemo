@@ -10,14 +10,23 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.hardware.display.DisplayManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Display;
+import android.view.ContextThemeWrapper;
+
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -48,15 +57,15 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.activity_implicit).setOnClickListener(v -> {
             Intent intent1 = new Intent();
-            intent1.setAction(Intent.ACTION_VIEW);
+            intent1.setAction(Intent.ACTION_MAIN);
+//            Uri uri = Uri.parse("content://com.demoapp.contentproviderdemo.provider/book");
+//            intent1.setData(uri);
             startActivity(intent1);
         });
 
         findViewById(R.id.button1).setOnClickListener(v -> {
-//            openOtherApp();
-            String caller=null;
-            Integer pid = caller == null ? null : 2;
-//            finish();
+            File file1 = new File("./../demoapp");
+            Log.i(TAG,file1.getAbsolutePath());
         });
     }
 
@@ -90,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         intent2.setComponent(componentName);
 //        intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        startActivity(intent2);
+        startActivity(intent1);
     }
 
     private void registerReturn() {
@@ -191,7 +200,6 @@ public class MainActivity extends AppCompatActivity {
         oldConfig = new Configuration(newConfig);
 //        new Exception(TAG).printStackTrace();
     }
-
 
 
 }

@@ -119,8 +119,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.call).setOnClickListener(v -> {
-            Bundle bundle=getContentResolver().call("com.demoapp.contentproviderdemo.provider",
-                    "getFileUri",null,null);
+            Log.d(TAG, "Application Context = " + getApplicationContext());
+            Bundle bundle = getContentResolver().call("com.demoapp.contentproviderdemo.provider",
+                    "method1", null, null);
             Log.d(TAG, bundle.toString());
 
         });
