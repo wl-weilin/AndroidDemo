@@ -23,4 +23,13 @@
         android:text="普通通知"
         android:textAllCaps="false"
         />
+
+    <Button
+        android:id="@+id/notify_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="带按钮通知"
+        android:textAllCaps="false"
+        />
 </LinearLayout>

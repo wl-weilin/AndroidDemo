@@ -4,14 +4,17 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/floating_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="close window" />
+        android:text="Close Window" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello System Window" />
+        android:background="@color/teal_200"
+        android:text="Floating Window"
+        android:textSize="20dp"
+        android:gravity="center"/>
 </LinearLayout>

@@ -38,13 +38,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.Theme_ActivityDemo);
         setContentView(R.layout.activity_main);
 
         oldConfig = getResources().getConfiguration();
 //        registerReturn();
 
         findViewById(R.id.activity_local).setOnClickListener(v -> {
-            openLocalActivity();
+            Log.i(TAG,"内存使用上限:"+Runtime.getRuntime().maxMemory() / 1024 / 1024 + "MB");
+            Log.i(TAG, "已申请内存:" + Runtime.getRuntime().totalMemory() / 1024 / 1024 + "MB");
+            Log.i(TAG, "已申请但未使用:" + Runtime.getRuntime().freeMemory() / 1024 / 1024 + "MB");
+//            openLocalActivity();
         });
 
         findViewById(R.id.activity_cross_app).setOnClickListener(v -> {
@@ -65,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.button1).setOnClickListener(v -> {
             File file1 = new File("./../demoapp");
-            Log.i(TAG,file1.getAbsolutePath());
+            Log.i(TAG, file1.getAbsolutePath());
         });
     }
 

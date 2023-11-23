@@ -35,7 +35,11 @@ public class MainActivity extends AppCompatActivity {
         readFileProvider();
 
         MyContentObserver myObserver = new MyContentObserver(null);
-        getContentResolver().registerContentObserver(Uri.parse(uriString), true, myObserver);
+        try {  // 如果该auth对应APP未安装，可能抛出ava.lang.SecurityException异常
+            getContentResolver().registerContentObserver(Uri.parse(uriString), true, myObserver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         EditText text_id = findViewById(R.id.text_id);
         EditText text_name = findViewById(R.id.text_name);
@@ -147,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.get_oaid).setOnClickListener(v -> {
             String oaid = getOAID();
             Log.d(TAG, oaid);
+            Toast.makeText(this, "OAID: " + oaid, Toast.LENGTH_SHORT).show();
         });
 
         // 通过访问android:exported="true"的Provider，获取到FileProvider的授权

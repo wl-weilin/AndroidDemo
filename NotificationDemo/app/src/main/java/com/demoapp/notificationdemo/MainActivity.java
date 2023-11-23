@@ -6,22 +6,24 @@ import android.content.Intent;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
+    private NotificationUtil notificationUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        NotificationUtil notificationUtil=new NotificationUtil(this);
+        notificationUtil = new NotificationUtil(this);
 
         findViewById(R.id.Next).setOnClickListener(v -> {
             newActivity();
-//            Intent intent = new Intent(this, SecondActivity.class);
-//            startActivityForResult(intent, REQUEST_CODE);
         });
 
         findViewById(R.id.notify_1).setOnClickListener(v -> {
-//            newActivity();
             notificationUtil.normalNotification();
+        });
+
+        findViewById(R.id.notify_2).setOnClickListener(v -> {
+            notificationUtil.buttonNotification();
         });
     }
 

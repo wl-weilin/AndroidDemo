@@ -14,17 +14,24 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 public class FloatingWindow {
+    private final Activity mContext;
     private WindowManager mWindowManager;
     private WindowManager.LayoutParams mLayoutParams;
     private DesktopLayout mWindowViewLayout;
     Button mClosetBtn = null;
-    // 声明屏幕的宽高
+
+    // 屏幕的宽高
     float x, y;
-    int top;
-    Activity mContext;
+    // Activity的显示区域(DecorView)的Rect的top值，也是状态栏的高度
+    int statusHeight;
 
     public FloatingWindow(Context context) {
         mContext = (Activity) context;
+        // 获取整个视图区域 Rect rect
+        Rect rect = new Rect();
+        mContext.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
+        // 获取状态栏的高度
+        statusHeight = rect.top;
     }
 
     /**
@@ -32,7 +39,7 @@ public class FloatingWindow {
      */
     public void createDesktopLayout() {
         mWindowViewLayout = new DesktopLayout(mContext);
-        mClosetBtn = mWindowViewLayout.findViewById(R.id.button2);
+        mClosetBtn = mWindowViewLayout.findViewById(R.id.floating_button);
         mClosetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +57,7 @@ public class FloatingWindow {
         public boolean onTouch(View v, MotionEvent event) {
             // 获取相对屏幕的坐标，即以屏幕左上角为原点
             x = event.getRawX();
-            y = event.getRawY() - top; // 25是系统状态栏的高度
+            y = event.getRawY() - statusHeight; // 25是系统状态栏的高度
             Log.i("testx", "startX" + mTouchStartX + "====startY"
                     + mTouchStartY);
             switch (event.getAction()) {
@@ -83,23 +90,12 @@ public class FloatingWindow {
         }
     };
 
-//    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        mContext.onWindowFocusChanged(hasFocus);
-        Rect rect = new Rect();
-        // /取得整个视图部分,注意，如果你要设置标题样式，这个必须出现在标题样式之后，否则会出错
-        mContext.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-        top = rect.top;//状态栏的高度，所以rect.height,rect.width分别是系统的高度的宽度
-
-        Log.i("top", "" + top);
-    }
-
     /**
      * 显示DesktopLayout
      */
     public void showDesk() {
         mWindowManager.addView(mWindowViewLayout, mLayoutParams);
-        mContext.finish();
+//        mContext.finish();
     }
 
     /**
@@ -107,7 +103,7 @@ public class FloatingWindow {
      */
     private void closeDesk() {
         mWindowManager.removeView(mWindowViewLayout);
-        mContext.finish();
+//        mContext.finish();
     }
 
     /**
@@ -143,13 +139,12 @@ class DesktopLayout extends LinearLayout {
         super(context);
         setOrientation(LinearLayout.VERTICAL);// 水平排列
 
-
         //设置宽高
         this.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
                 LayoutParams.WRAP_CONTENT));
 
         View view = LayoutInflater.from(context).inflate(
-                R.layout.window, null);
+                R.layout.floating_window, null);
         this.addView(view);
     }
 }

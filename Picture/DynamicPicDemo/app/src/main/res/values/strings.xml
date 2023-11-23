@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DynamicPicDemo</string>
+    <string name="tip_use_front_camera">Fold your device to \nuse the front camera</string>
+</resources>

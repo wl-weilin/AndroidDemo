@@ -13,6 +13,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NotificationDemo"
         tools:targetApi="31">
+
+        <receiver
+            android:name=".ButtonReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="button_click" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".SecondActivity"
             android:exported="false" />

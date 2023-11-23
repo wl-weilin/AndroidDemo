@@ -51,9 +51,6 @@ public class SecondActivity extends AppCompatActivity {
 
 
         findViewById(R.id.botton).setOnClickListener(v -> {
-
-
-
 //            Inner inner = new Inner();
 //            inner.start();
         });

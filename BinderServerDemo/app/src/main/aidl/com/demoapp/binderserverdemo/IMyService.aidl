@@ -4,6 +4,9 @@ package com.demoapp.binderserverdemo;
 // Declare any non-default types here with import statements
 
 interface IMyService {
-   oneway void funcA();
-   String funcB();
+    // 带参数和返回值的普通调用
+    String say(String str);
+    // 异步调用
+    oneway void asyncFunc();
+
 }

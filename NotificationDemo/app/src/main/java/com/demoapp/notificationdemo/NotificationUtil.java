@@ -45,7 +45,7 @@ public class NotificationUtil {
 //        intent.setClassName("com.demoapp.activitydemo",
 //                "com.demoapp.activitydemo.MainActivity");
         intent.setClassName("com.demoapp.notificationdemo",
-                "com.demoapp.notificationdemo.SecondActivity1");
+                "com.demoapp.notificationdemo.SecondActivity");
 
 //        intent.setAction(Intent.ACTION_VIEW);
 //        intent.setData(Uri.parse("schema-demo://example/"));
@@ -55,9 +55,11 @@ public class NotificationUtil {
 
     public PendingIntent getBroadcast() {
         //点击通知后要执行的操作：首先构建Intent，然后根据Intent跳转到Activity
-        Intent intent = new Intent(mContext, SecondActivity.class);
+        Intent intent = new Intent("button_click");
+        intent.setClassName(mContext.getPackageName(),
+                mContext.getPackageName()+".ButtonReceiver");
         int flag = PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT;
-        return PendingIntent.getActivity(mContext, 0, intent, flag);
+        return PendingIntent.getBroadcast(mContext, 0, intent, flag);
     }
 
     public void normalNotification() {
@@ -77,6 +79,38 @@ public class NotificationUtil {
                 .setOngoing(true)
         ;
 
+        //获取构建好的Notification
+        Notification notification = builder.build();
+        //id标识该notification
+        notificationManager.notify(notificationId, notification);
+    }
+
+    public void buttonNotification(){
+        PendingIntent pendingIntent = getBroadcast();
+        //获取一个Notification构造器
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext, channelId);
+        //设置Notification的样式
+        builder.setContentTitle("标题")
+                .setContentText("内容")
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.mipmap.ic_launcher)
+//                .setDefaults(Notification.DEFAULT_ALL)
+                .setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.ic_launcher))
+                .setContentIntent(pendingIntent)  //传入Intent
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(
+                        "第1行\n第2行\n第3行\n第4行\n第5行\n第6行\n").setSummaryText("通知摘要"))
+
+//                .setAutoCancel(true)  //点击通知后自动消失
+//                .setOngoing(true)
+//                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+        ;
+
+        // 添加第一个按钮
+        NotificationCompat.Action action = new NotificationCompat.Action.Builder(
+                R.mipmap.ic_launcher, "Button 1", pendingIntent).build();
+        builder.addAction(action);
+        // 添加第二个按钮
+        builder.addAction(R.mipmap.ic_launcher, "Button 2", pendingIntent);
         //获取构建好的Notification
         Notification notification = builder.build();
         //id标识该notification

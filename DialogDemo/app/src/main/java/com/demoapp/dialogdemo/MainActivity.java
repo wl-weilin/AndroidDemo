@@ -26,7 +26,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String TAG="DialogDemoMain" ;
+    public static final String TAG = "DialogDemoMain";
     public static Activity mActivity;
 
     private final BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mActivity=this;
+        mActivity = this;
 
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("com.action.test");
@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.popup_window).setOnClickListener(v -> {
             creatPopupWindow();
+            onBackPressed();
         });
 
         findViewById(R.id.alert_dialog).setOnClickListener(v -> {
@@ -64,9 +65,12 @@ public class MainActivity extends AppCompatActivity {
 //            creatDialogFragment();
         });
 
-        findViewById(R.id.button).setOnClickListener(v -> {
-//            openActivity();
+        findViewById(R.id.floating).setOnClickListener(v -> {
             createFloatingWindow();
+        });
+
+        findViewById(R.id.button).setOnClickListener(v -> {
+
         });
     }
 
@@ -89,7 +93,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void creatAlertDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this); // context 是当前 Activity 或者 Application 的上下文对象
+        // context 是当前 Activity 或者 Application 的上下文对象
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("标题");
         builder.setMessage("弹窗内容");
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -167,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createFloatingWindow() {
-        FloatingWindow floatingWindow=new FloatingWindow(this);
+        FloatingWindow floatingWindow = new FloatingWindow(this);
         floatingWindow.createWindowManager();
         floatingWindow.createDesktopLayout();
         floatingWindow.showDesk();
