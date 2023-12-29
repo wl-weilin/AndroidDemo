@@ -44,4 +44,35 @@ class StubImpl extends IMyService.Stub {
         throw new SecurityException();
 //        return "I am funcB";
     }
+
+    @Override
+    public String funcC(String str) throws RemoteException {
+        Log.d(TAG, "Call funcC");
+        return null;
+    }
+
+    @Override
+    public void onewayFuncA() throws RemoteException {
+
+    }
+
+    @Override
+    public void onewayFuncB(String str) throws RemoteException {
+
+    }
+
+    @Override
+    public String inFunc(Person person) throws RemoteException {
+        return null;
+    }
+
+    @Override
+    public String outFunc(Person person) throws RemoteException {
+        return null;
+    }
+
+    @Override
+    public String inoutFunc(Person person) throws RemoteException {
+        return null;
+    }
 }

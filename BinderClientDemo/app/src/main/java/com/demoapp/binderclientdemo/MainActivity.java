@@ -80,5 +80,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.func_c).setOnClickListener(v -> {
+            Log.d(TAG, "call funcC");
+            try {
+                iServiceStub.funcC("123");
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        findViewById(R.id.func_in_out).setOnClickListener(v -> {
+            Log.d(TAG, "call inout func");
+            String str="123";
+            Person person=new Person(1000,"xiaoming");
+            try {
+                iServiceStub.funcC(str);
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
+            Log.d(TAG, str);
+        });
     }
 }

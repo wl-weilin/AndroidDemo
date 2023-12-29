@@ -10,8 +10,8 @@ public class SoundActivity extends FragmentActivity {
     private final String TAG = "SoundActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
         setContentView(R.layout.sound_activity);
     }
 }

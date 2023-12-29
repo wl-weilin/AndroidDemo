@@ -3,12 +3,11 @@ package com.demoapp.nativedemo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
 import com.demoapp.nativedemo.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
+    private final String TAG = "NativeDemoMain";
     // Used to load the 'nativedemo' library on application startup.
     static {
         System.loadLibrary("nativedemo");
@@ -19,13 +18,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        // Example of a call to a native method
-        TextView tv = binding.sampleText;
-        tv.setText(stringFromJNI());
+        findViewById(R.id.button1).setOnClickListener(v -> {
+            makeCrash();
+        });
     }
 
     /**
@@ -33,4 +30,5 @@ public class MainActivity extends AppCompatActivity {
      * which is packaged with this application.
      */
     public native String stringFromJNI();
+    public native void makeCrash();
 }

@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        readFileProvider();
+
 
         MyContentObserver myObserver = new MyContentObserver(null);
         try {  // 如果该auth对应APP未安装，可能抛出ava.lang.SecurityException异常
@@ -129,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "数据更新成功！");
             }
         });
+
         // 调用Provider中的call()
         findViewById(R.id.call).setOnClickListener(v -> {
             Bundle bundle = getContentResolver().call(Authority,
@@ -138,74 +139,10 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, result == null ? "null" : result);
         });
 
-        //通过Intent打开指定数据类型的Activity，会调用到getType()
-        findViewById(R.id.by_intent).setOnClickListener(v -> {
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_MAIN);
-            Uri uri = Uri.parse(uriString);
-            intent.setData(uri);
+        findViewById(R.id.next_activity).setOnClickListener(v -> {
+            Intent intent=new Intent(this,SecondActivity.class);
             startActivity(intent);
         });
-
-        // 获取设备的OAID
-        findViewById(R.id.get_oaid).setOnClickListener(v -> {
-            String oaid = getOAID();
-            Log.d(TAG, oaid);
-            Toast.makeText(this, "OAID: " + oaid, Toast.LENGTH_SHORT).show();
-        });
-
-        // 通过访问android:exported="true"的Provider，获取到FileProvider的授权
-        findViewById(R.id.grant_auth).setOnClickListener(v -> {
-            try {
-                Bundle bundle = getContentResolver().call("com.demoapp.filedemo.provider",
-                        "getFileUri", null, null);
-                String result_uri = bundle.getString("result_uri");
-                Log.d(TAG, result_uri);
-
-            } catch (Exception e) {
-                Log.d(TAG, e.toString());
-            }
-        });
-
-        // 读取FileProvider文件中的内容
-        findViewById(R.id.read_file).setOnClickListener(v -> {
-            Uri uri = Uri.parse("content://com.demoapp.filedemo.fileprovider/share_name/myfile.txt");
-            readFile(uri);
-        });
-    }
-
-    //通过Activity分享到此Activity中，调用此方法读取由其它APP分享的文件
-    public void readFileProvider() {
-        Intent intent = getIntent();
-        if (intent != null && intent.getData() != null) {
-            readFile(intent.getData());
-        }
-    }
-
-    public void readFile(Uri uri) {
-        try {
-            ParcelFileDescriptor parcelFileDescriptor =
-                    getContentResolver().openFileDescriptor(uri, "r");
-            FileReader reader = new FileReader(parcelFileDescriptor.getFileDescriptor());
-            BufferedReader bufferedReader = new BufferedReader(reader);
-            // 解析传来的数据，\A表示从字符串开头进行匹配
-            String res = new Scanner(bufferedReader).useDelimiter("\\A").next();
-            Log.d(TAG, res);
-            parcelFileDescriptor.close();
-        } catch (Exception e) {
-            Log.d(TAG, e.toString());
-        }
-    }
-
-    private String getOAID() {
-        Uri uri = Uri.parse("content://com.miui.idprovider/oaid");
-        Cursor cursor = getContentResolver().query(uri, null, null,
-                null, null);
-        cursor.moveToNext();
-        String oaid = cursor.getString(cursor.getColumnIndexOrThrow("uniform_id"));
-        cursor.close();
-//        Log.d(TAG, oaid);
-        return oaid;
     }
 
     /**
@@ -251,9 +188,6 @@ public class MainActivity extends AppCompatActivity {
         values.put("name", "孙三");
         getContentResolver().insert(uri, values);
     }
-
-    public void abc() {
-        ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-    }
+    
 }
 

@@ -18,4 +18,15 @@ public class DisplayFragment extends Fragment {
         View view = inflater.inflate(R.layout.display_fragment, container, false);
         return view;
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d(TAG, "onDestroyView");
+    }
+
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy");
+    }
 }

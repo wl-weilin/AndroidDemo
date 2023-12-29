@@ -5,6 +5,7 @@
     <queries>
         <package android:name="com.demoapp.contentproviderdemo" />
         <package android:name="com.demoapp.filedemo" />
+        <package android:name="com.android.soundrecorder" />
     </queries>
 
     <application
@@ -15,15 +16,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ContentResolverDemo">
         <activity
+            android:name=".SecondActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data android:scheme="content" />

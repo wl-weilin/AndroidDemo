@@ -32,4 +32,23 @@
         android:text="Func B"
         android:textAllCaps="false"
         />
+
+    <Button
+        android:id="@+id/func_c"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Func C"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/func_in_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Func C"
+        android:textAllCaps="false"
+        />
+
 </LinearLayout>

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    >
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/activity_local"
@@ -12,8 +11,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="本地Activity"
-        android:textAllCaps="false"
-        />
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/activity_cross_app"
@@ -21,8 +19,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="跨APP启动Activity"
-        android:textAllCaps="false"
-        />
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/activity_return"
@@ -30,8 +27,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="有返回值"
-        android:textAllCaps="false"
-        />
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/activity_implicit"
@@ -39,8 +35,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Implicit Activity"
-        android:textAllCaps="false"
-        />
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/button1"
@@ -48,6 +43,5 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Button 1"
-        android:textAllCaps="false"
-        />
+        android:textAllCaps="false" />
 </LinearLayout>

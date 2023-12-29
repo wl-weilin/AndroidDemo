@@ -1,5 +1,6 @@
 package com.demoapp.contentproviderdemo;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -169,5 +170,8 @@ public class MainActivity extends AppCompatActivity {
         values.put("id", 1003);
         values.put("name", "孙三");
         getContentResolver().insert(uri, values);
+
+        getContentResolver().notifyChange(uri, null,
+                ContentResolver.NOTIFY_INSERT);
     }
 }

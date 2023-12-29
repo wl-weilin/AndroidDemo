@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.popup_window).setOnClickListener(v -> {
             creatPopupWindow();
-            onBackPressed();
         });
 
         findViewById(R.id.alert_dialog).setOnClickListener(v -> {
@@ -94,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void creatAlertDialog() {
         // context 是当前 Activity 或者 Application 的上下文对象
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.getApplicationContext());
         builder.setTitle("标题");
         builder.setMessage("弹窗内容");
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {

@@ -25,6 +25,14 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.notify_2).setOnClickListener(v -> {
             notificationUtil.buttonNotification();
         });
+
+        findViewById(R.id.notify_3).setOnClickListener(v -> {
+            notificationUtil.styleNotification();
+        });
+
+        findViewById(R.id.notify_4).setOnClickListener(v -> {
+            notificationUtil.showRemoteViewsNotification();
+        });
     }
 
     private void newActivity() {

@@ -68,8 +68,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.button1).setOnClickListener(v -> {
-            File file1 = new File("./../demoapp");
-            Log.i(TAG, file1.getAbsolutePath());
+//            File file1 = new File("./../demoapp");
+//            Log.i(TAG, file1.getAbsolutePath());
+            finish();
         });
     }
 

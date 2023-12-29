@@ -1,5 +1,6 @@
 package com.demoapp.contentresolverdemo;
 
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.database.ContentObserver;
 import android.net.Uri;
@@ -20,9 +21,12 @@ public class MyContentObserver extends ContentObserver {
 
     @Override
     public void onChange(boolean selfChange, Uri uri, int flags) {
-        Log.d(TAG, String.valueOf(selfChange));
-        Log.d(TAG, "change(flags) Executed");
-        Log.d(TAG, Integer.toHexString(flags));
+//        Log.d(TAG, String.valueOf(selfChange));
+        assert uri != null;
+        String str = String.format("change(%s,%s,%s) Executed",
+                selfChange, uri, "0x" + Integer.toHexString(flags));
+        Log.d(TAG, str);
+//        Log.d(TAG, Integer.toHexString(flags));
         if ((flags & ContentResolver.NOTIFY_INSERT) != 0) {
             // 处理插入操作的变化
             Log.d(TAG, "NOTIFY_INSERT");

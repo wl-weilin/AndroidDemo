@@ -56,8 +56,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        remoteIntent = new Intent();
+
         // Android 5.0以后只设置action不能启动相应的服务，需要设置packageName或者Component
+        remoteIntent = new Intent();
         remoteIntent.setPackage("com.demoapp.servicedemo");
         remoteIntent.setAction("com.demoapp.servicedemo.ServiceAction");
         remoteIntent.putExtra("isRemote", true);

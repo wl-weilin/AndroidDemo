@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.FileProvider;
 
 import java.io.File;
+import java.util.Objects;
 
 public class DataBaseProvider extends ContentProvider {
     public DataBaseProvider() {
@@ -102,7 +103,8 @@ public class DataBaseProvider extends ContentProvider {
                 long newId = db.insert(TableName, null, values);
                 uriReturn = Uri.parse("content://" + AUTHORITY + "/" + TableName + "/" + newId);
                 int NOTIFY_NO_DELAY = 1 << 15;
-                getContext().getContentResolver().notifyChange(uri, null);
+                getContext().getContentResolver().notifyChange(uri, null,
+                        ContentResolver.NOTIFY_INSERT);
                 break;
             default:
                 break;
@@ -123,7 +125,7 @@ public class DataBaseProvider extends ContentProvider {
                 //以路径分隔符"/"分割uri字符串，返回id
                 String Id = uri.getPathSegments().get(1);
                 deletedRows = db.delete(TableName, "id = ?", new String[]{Id});
-                getContext().getContentResolver().notifyChange(uri, null,
+                Objects.requireNonNull(getContext()).getContentResolver().notifyChange(uri, null,
                         ContentResolver.NOTIFY_DELETE);
                 break;
             default:

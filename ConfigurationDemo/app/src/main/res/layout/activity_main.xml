@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/config_orientation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="屏幕方向"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/config_locale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="语言区域"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/config_dpi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="显示密度"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/config_screensize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="屏幕尺寸"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/config_fontScale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="字体缩放比例"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/config_uimode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="UI模式"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/other_config"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="其它Config"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Button 1"
+        android:textAllCaps="false" />
+</LinearLayout>
