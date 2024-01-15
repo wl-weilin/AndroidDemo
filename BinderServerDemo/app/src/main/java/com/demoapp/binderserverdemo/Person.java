@@ -4,8 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Person implements Parcelable {
-    private int mId;
-    private String mName;
+    public int mId;
+    public String mName;
 
     // 必须要有无参构造函数，因为如果aidl中使用out修饰该对象则会调用无参构造函数
     public Person() {

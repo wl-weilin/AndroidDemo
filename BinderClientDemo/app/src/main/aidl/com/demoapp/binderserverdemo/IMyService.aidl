@@ -3,6 +3,7 @@ package com.demoapp.binderserverdemo;
 
 // Declare any non-default types here with import statements
 import com.demoapp.binderclientdemo.Person;
+import com.demoapp.binderclientdemo.IClientCallback;
 //parcelable Person;
 
 interface IMyService {
@@ -25,4 +26,7 @@ interface IMyService {
    String outFunc(out Person person);
    // inout: 数据可在服务端与客户端之间双向流通。即服务端能接收到客户端传来的完整对象，并且服务端修改对象后客户端会同步变动。
    String inoutFunc(inout Person person);
+
+   // 设置客户端的回调接口
+   void setCallback(IClientCallback callback);
 }

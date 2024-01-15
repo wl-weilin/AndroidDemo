@@ -45,10 +45,7 @@ public class MainActivity extends AppCompatActivity {
 //        registerReturn();
 
         findViewById(R.id.activity_local).setOnClickListener(v -> {
-            Log.i(TAG,"内存使用上限:"+Runtime.getRuntime().maxMemory() / 1024 / 1024 + "MB");
-            Log.i(TAG, "已申请内存:" + Runtime.getRuntime().totalMemory() / 1024 / 1024 + "MB");
-            Log.i(TAG, "已申请但未使用:" + Runtime.getRuntime().freeMemory() / 1024 / 1024 + "MB");
-//            openLocalActivity();
+            openLocalActivity();
         });
 
         findViewById(R.id.activity_cross_app).setOnClickListener(v -> {

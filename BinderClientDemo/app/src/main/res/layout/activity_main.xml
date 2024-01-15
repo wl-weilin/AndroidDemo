@@ -16,38 +16,56 @@
         />
 
     <Button
-        android:id="@+id/func_a"
+        android:id="@+id/sync_func"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Func A"
+        android:text="Sync Func"
         android:textAllCaps="false"
         />
 
     <Button
-        android:id="@+id/func_b"
+        android:id="@+id/oneway_func"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Func B"
+        android:text="Oneway Func"
         android:textAllCaps="false"
         />
 
     <Button
-        android:id="@+id/func_c"
+        android:id="@+id/in_out_func"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Func C"
+        android:text="out/inout Func"
         android:textAllCaps="false"
         />
 
     <Button
-        android:id="@+id/func_in_out"
+        android:id="@+id/send_callback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Func C"
+        android:text="客户端回调"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/bind_messenger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Bind Messenger"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/call_messenger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Call Messenger"
         android:textAllCaps="false"
         />
 

@@ -7,29 +7,56 @@
     >
 
     <Button
-        android:id="@+id/Botton0"
+        android:id="@+id/send_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="发送消息"
+        android:text="Send Message"
         android:textAllCaps="false"
         />
 
     <Button
-        android:id="@+id/Botton1"
+        android:id="@+id/post_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Botton1"
+        android:text="Post Message"
         android:textAllCaps="false"
         />
 
     <Button
-        android:id="@+id/Botton2"
+        android:id="@+id/my_handler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Botton2"
+        android:text="自定义Handler"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/handle_thread"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Handler Thread"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/looper_thread"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Looper Thread"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/async_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="异步消息"
         android:textAllCaps="false"
         />
 </LinearLayout>

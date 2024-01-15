@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -127,6 +128,8 @@ public class MainActivity extends AppCompatActivity {
             int res = getContentResolver().update(uri, values, null, null);
             if (res > 0) {
                 Log.d(TAG, "数据更新成功！");
+            } else if (res == 0) {
+                Log.d(TAG, "目标数据不存在！");
             }
         });
 
@@ -140,7 +143,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.next_activity).setOnClickListener(v -> {
-            Intent intent=new Intent(this,SecondActivity.class);
+            Intent intent = new Intent(this, SecondActivity.class);
+            Log.d(TAG, "测试");
             startActivity(intent);
         });
     }
@@ -188,6 +192,5 @@ public class MainActivity extends AppCompatActivity {
         values.put("name", "孙三");
         getContentResolver().insert(uri, values);
     }
-    
 }
 

@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Person implements Parcelable {
-    private int mId;
+    public int mId;
     private String mName;
 
     public Person() {
