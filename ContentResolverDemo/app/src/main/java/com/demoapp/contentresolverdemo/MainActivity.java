@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
             cursor.close();
             Log.d(TAG, "count = " + count);
+            Toast.makeText(this,"Toast", Toast.LENGTH_LONG).show();
         });
 
         //添加数据，即添加一条数据到目标数据库中

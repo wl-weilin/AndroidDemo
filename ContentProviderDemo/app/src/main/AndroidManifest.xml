@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.demoapp.contentproviderdemo">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.demoapp.contentproviderdemo"
+    android:sharedUserId="com.abc"
+    android:sharedUserMaxSdkVersion="34"
+    tools:targetApi="tiramisu">
 
     <application
         android:allowBackup="true"

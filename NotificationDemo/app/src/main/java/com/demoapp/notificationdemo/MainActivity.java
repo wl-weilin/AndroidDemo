@@ -18,18 +18,22 @@ public class MainActivity extends AppCompatActivity {
             newActivity();
         });
 
+        // 普通通知
         findViewById(R.id.notify_1).setOnClickListener(v -> {
             notificationUtil.normalNotification();
         });
 
+        // 带按钮通知
         findViewById(R.id.notify_2).setOnClickListener(v -> {
             notificationUtil.buttonNotification();
         });
 
+        // Style通知
         findViewById(R.id.notify_3).setOnClickListener(v -> {
             notificationUtil.styleNotification();
         });
 
+        // RemoteView
         findViewById(R.id.notify_4).setOnClickListener(v -> {
             notificationUtil.showRemoteViewsNotification();
         });

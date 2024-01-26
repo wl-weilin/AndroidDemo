@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Icon;
+import android.net.Uri;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -46,8 +47,12 @@ public class NotificationUtil {
 //        intent.setClass(mContext, SecondActivity.class);
 //        intent.setClassName("com.demoapp.activitydemo",
 //                "com.demoapp.activitydemo.MainActivity");
-        intent.setClassName("com.demoapp.notificationdemo",
-                "com.demoapp.notificationdemo.SecondActivity");
+//        intent.setClassName("com.demoapp.notificationdemo",
+//                "com.demoapp.notificationdemo.SecondActivity");
+
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse("https://www.baidu.com"));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         int flag = PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT;
         return PendingIntent.getActivity(mContext, 0, intent, flag);

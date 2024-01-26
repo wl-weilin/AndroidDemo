@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.demoapp.contentresolverdemo">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.demoapp.contentresolverdemo"
+    android:sharedUserId="com.abc"
+    android:sharedUserMaxSdkVersion="34"
+    tools:targetApi="tiramisu">
 
     <queries>
         <package android:name="com.demoapp.contentproviderdemo" />

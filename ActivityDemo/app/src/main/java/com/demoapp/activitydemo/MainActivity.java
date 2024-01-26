@@ -45,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
 //        registerReturn();
 
         findViewById(R.id.activity_local).setOnClickListener(v -> {
+            Log.d(TAG, "123");
+            Activity a = null;
+            Log.d(TAG, "123" + a);
             openLocalActivity();
         });
 
