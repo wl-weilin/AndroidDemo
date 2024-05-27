@@ -3,12 +3,20 @@ Android Studio 2022.2.1 Patch 1新建Android APP步骤：
 ···New Activity -> Empty View Activity(勾选Launcher Activity)
 ···设置Modules：compileSdk=33(最新Android版本)，minSdk=30，targetSdk=33(同compileSdk)
 
+
 DemoAPP说明：
 AppDemo             一个Demo模板
 BasicActivity       Android Studio默认的BasicActivity
 FileDemo            文件创建、写入、读取及对外分享（FileProvider）
 LibDemo             生成lib库文件
 LibTestDemo         测试生成的lib库文件是否可以正常使用
+
+
+DemoAPP环境：
+minSdk=30; compileSdk=33; targetSdk=33
+Gradle Plugin Version: 7.4.2
+Gradle Plugin: 7.5
+Java版本：JetBrain Runtime version 17.0.6
 
 提交代码：
 git add .

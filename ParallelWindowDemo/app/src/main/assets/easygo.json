@@ -1,0 +1,38 @@
+{
+  "easyGoVersion": "1.0",
+  "client": "com.demoapp.parallelwindowdemo",
+  "logicEntities": [
+    {
+      "head": {
+        "function": "magicwindow",
+        "required": "true"
+      },
+      "body": {
+        "mode": "1",
+        "defaultDualActivities": {
+          "mainPages": "com.demoapp.parallelwindowdemo.MainActivity",
+          "relatedPage": "com.demoapp.parallelwindowdemo.SecondActivity"
+        },
+        "transActivities": [
+          "com.huawei.example.A1Activity",
+          "com.huawei.example.A2Activity"
+        ],
+        "Activities": [
+          {
+            "name": "ccom.demoapp.parallelwindowdemo.MainActivity",
+            "defaultFullScreen": "true"
+          },
+          {
+            "name": "com.demoapp.parallelwindowdemo.SecondActivity",
+            "lockSide": "primary"
+          }
+        ],
+        "UX": {
+          "supportRotationUxCompat": "false",
+          "isDraggable": "false",
+          "supportDraggingToFullScreen": "PAD|FOLD"
+        }
+      }
+    }
+  ]
+}

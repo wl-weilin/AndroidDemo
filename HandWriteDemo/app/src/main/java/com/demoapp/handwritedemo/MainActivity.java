@@ -12,10 +12,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+//        setContentView(R.layout.activity_main);
+        setContentView(new DraggableCircleView(this));
+//        mGraffitiView = findViewById(R.id.graffiti_view);
+//        initGraffitiView();
 
-        mGraffitiView = findViewById(R.id.graffiti_view);
+    }
 
+    private void initGraffitiView(){
         findViewById(R.id.btn_undo).setOnClickListener(v -> {
             mGraffitiView.undo();
         });
@@ -44,6 +48,5 @@ public class MainActivity extends AppCompatActivity {
             mGraffitiView.eraser();
         });
     }
-
 
 }

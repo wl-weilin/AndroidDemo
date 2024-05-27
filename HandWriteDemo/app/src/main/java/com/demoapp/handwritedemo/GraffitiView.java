@@ -39,6 +39,10 @@ public class GraffitiView extends View {
         initPaint();
     }
 
+    private void initButton() {
+
+    }
+
     private void initPaint() {
         paint = new Paint();
         paint.setAntiAlias(true);

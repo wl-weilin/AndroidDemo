@@ -45,10 +45,11 @@ public class MainActivity extends AppCompatActivity {
 //        registerReturn();
 
         findViewById(R.id.activity_local).setOnClickListener(v -> {
-            Log.d(TAG, "123");
-            Activity a = null;
-            Log.d(TAG, "123" + a);
-            openLocalActivity();
+            Intent intent = new Intent();
+            intent.setClass(this, SecondActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+            startActivity(intent);
+//            openLocalActivity();
         });
 
         findViewById(R.id.activity_cross_app).setOnClickListener(v -> {
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.activity_implicit).setOnClickListener(v -> {
             Intent intent1 = new Intent();
-            intent1.setAction(Intent.ACTION_MAIN);
+            intent1.setAction(Intent.ACTION_VIEW);
 //            Uri uri = Uri.parse("content://com.demoapp.contentproviderdemo.provider/book");
 //            intent1.setData(uri);
             startActivity(intent1);
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         // 方法1
         Intent intent1 = new Intent();
         intent1.setClass(this, SecondActivity.class);
-//        intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
 
         // 方法2
         Intent intent2 = new Intent(this, SecondActivity.class);

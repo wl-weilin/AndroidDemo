@@ -5,10 +5,11 @@
     android:layout_height="match_parent"
     android:background="#ffffff">
 
-    <com.demoapp.handwritedemo.GraffitiView
+    <com.demoapp.handwritedemo.DraggableCircleView
         android:id="@+id/graffiti_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        />
 
     <RelativeLayout
         android:id="@+id/rl_left"

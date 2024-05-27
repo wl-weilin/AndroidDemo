@@ -33,9 +33,7 @@
         <activity
             android:name=".SecondActivity"
             android:exported="true"
-            android:label="SecondActivity">
-
-        </activity>
+            android:label="SecondActivity" />
 
         <!--        <activity-alias-->
         <!--            android:name="ThirdActivity"-->
