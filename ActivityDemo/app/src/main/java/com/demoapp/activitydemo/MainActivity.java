@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.NotificationManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -19,10 +20,13 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
+import android.view.Display;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.Arrays;
@@ -45,19 +49,41 @@ public class MainActivity extends AppCompatActivity {
 //        registerReturn();
 
         findViewById(R.id.activity_local).setOnClickListener(v -> {
-            Intent intent = new Intent();
-            intent.setClass(this, SecondActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-            startActivity(intent);
+            Intent intent1 = new Intent(Intent.ACTION_VIEW);
+            startActivity(intent1);
 //            openLocalActivity();
         });
 
         findViewById(R.id.activity_cross_app).setOnClickListener(v -> {
-            openOtherApp();
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+//            intent.putExtra(Intent.EXTRA_STREAM, "content://123");
+            intent = Intent.createChooser(intent, "ABC");
+            startActivity(intent);
+//            openOtherApp();
         });
 
         findViewById(R.id.activity_return).setOnClickListener(v -> {
-            openActivityReturn();
+            // 通过Activity类中的getWindowManager()方法获取窗口管理，再调用getDefaultDisplay()方法获取获取Display对象
+            Display display = getWindowManager().getDefaultDisplay();
+
+            // 方法一(推荐使用)使用Point来保存屏幕宽、高两个数据
+            Point outSize = new Point();
+            // 通过Display对象获取屏幕宽、高数据并保存到Point对象中
+            display.getSize(outSize);
+            // 从Point对象中获取宽、高
+            int x = outSize.x;
+            int y = outSize.y;
+            // 通过吐司显示屏幕宽、高数据
+            Toast.makeText(this, "手机像素为：" + x + "x" + y, Toast.LENGTH_LONG).show();
+
+            // 方法二(不推荐使用)直接通过Display对象获取屏幕宽、高数据
+            int width = display.getWidth();
+            int height = display.getHeight();
+            // 通过吐司显示屏幕宽、高数据
+            Toast.makeText(this, "手机像素为：" + width + "x" + height, Toast.LENGTH_LONG).show();
+
+
+//            openActivityReturn();
         });
 
         findViewById(R.id.activity_implicit).setOnClickListener(v -> {
@@ -79,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         // 方法1
         Intent intent1 = new Intent();
         intent1.setClass(this, SecondActivity.class);
-        intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+//        intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
 
         // 方法2
         Intent intent2 = new Intent(this, SecondActivity.class);

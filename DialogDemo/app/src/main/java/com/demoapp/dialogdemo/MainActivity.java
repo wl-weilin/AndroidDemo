@@ -92,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void creatAlertDialog() {
-        // context 是当前 Activity 或者 Application 的上下文对象
-        AlertDialog.Builder builder = new AlertDialog.Builder(this.getApplicationContext());
+        // context 必须是 Activity ，不能是 Application
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("标题");
         builder.setMessage("弹窗内容");
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {

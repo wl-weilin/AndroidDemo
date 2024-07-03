@@ -3,10 +3,13 @@ package com.demoapp.activitydemo;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 
 public class SecondActivity extends AppCompatActivity {
@@ -30,7 +33,6 @@ public class SecondActivity extends AppCompatActivity {
             Log.i(TAG, "内存使用上限:" + Runtime.getRuntime().maxMemory() / 1024 / 1024 + "MB");
             Log.i(TAG, "已申请内存:" + Runtime.getRuntime().totalMemory() / 1024 / 1024 + "MB");
             Log.i(TAG, "已申请但未使用:" + Runtime.getRuntime().freeMemory() / 1024 / 1024 + "MB");
-
         });
     }
 

@@ -7,20 +7,20 @@
     >
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/normal_toast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="显示Toast"
+        android:text="普通Toast"
         android:textAllCaps="false"
         />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/custom_toast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="显示Toast 2"
+        android:text="自定义Toast"
         android:textAllCaps="false"
         />
 </LinearLayout>

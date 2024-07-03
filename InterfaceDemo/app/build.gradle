@@ -1,0 +1,72 @@
+plugins {
+    id 'com.android.application'
+}
+
+// scan first android.p.framework.jar when JavaCompile
+gradle.projectsEvaluated {
+    tasks.withType(JavaCompile) {
+        // android studio 3.X 的版本只需要加入第一句代码
+        options.compilerArgs.add('-Xbootclasspath/p:libs/framework.jar')
+        // android studio 4.X 的版本需要以下代码
+        Set<File> fileSet = options.bootstrapClasspath.getFiles()
+        List<File> newFileList = new ArrayList<>()
+        newFileList.add(new File("./libs/framework.jar"))
+        newFileList.addAll(fileSet)
+        options.bootstrapClasspath = files(newFileList.toArray())
+    }
+}
+
+android {
+    namespace 'com.demoapp.interfacedemo'
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.demoapp.interfacedemo"
+        minSdk 30
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('aiStudyX2.jks')
+            storePassword 'iflytaistudyx2'
+            keyAlias 'aistudyx2key'
+            keyPassword 'iflytaistudyx2'
+        }
+
+        debug {
+            storeFile file('aiStudyX2.jks')
+            storePassword 'iflytaistudyx2'
+            keyAlias 'aistudyx2key'
+            keyPassword 'iflytaistudyx2'
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+//    implementation fileTree(dir: '../libs', include: ['iFLY_ROM_SDK_v1.40.jar'])
+    implementation files('../libs/javalib.jar')
+}
