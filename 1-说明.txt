@@ -12,10 +12,16 @@ LibDemo             生成lib库文件
 LibTestDemo         测试生成的lib库文件是否可以正常使用
 
 
-DemoAPP环境：
+DemoAPP环境1：
 minSdk=30; compileSdk=33; targetSdk=33
 Gradle Plugin Version: 7.4.2
-Gradle Plugin: 7.5
+Gradle Version: 7.5
+Java版本：JetBrain Runtime version 17.0.6
+
+DemoAPP环境2：
+minSdk=28; compileSdk=34; targetSdk=32
+Gradle Plugin Version: 8.1.4
+Gradle Version: 8.0
 Java版本：JetBrain Runtime version 17.0.6
 
 提交代码：

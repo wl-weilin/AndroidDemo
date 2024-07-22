@@ -10,6 +10,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.iflytek.hwc.appcontrol.AppControlManager;
 import com.iflytek.hwc.audiostatistics.AudioStatisticsManager;
@@ -29,9 +30,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         findViewById(R.id.button1).setOnClickListener(v -> {
-            Intent intent1 = new Intent(Intent.ACTION_VIEW);
-            intent1 = Intent.createChooser(intent1, "ABC");
-            startActivity(intent1);
+            Toast.makeText(this, "一个普通Toast", Toast.LENGTH_SHORT).show();
+//            Intent intent1 = new Intent(Intent.ACTION_VIEW);
+//            intent1 = Intent.createChooser(intent1, "ABC");
+//            startActivity(intent1);
 
 //            try {
 //                AppControlManager acm = new AppControlManager();

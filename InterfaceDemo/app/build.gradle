@@ -22,8 +22,8 @@ android {
 
     defaultConfig {
         applicationId "com.demoapp.interfacedemo"
-        minSdk 30
-        targetSdk 32
+        minSdk 26
+        targetSdk 28
         versionCode 1
         versionName "1.0"
 

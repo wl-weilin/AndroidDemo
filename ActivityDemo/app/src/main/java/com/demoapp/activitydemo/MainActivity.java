@@ -23,6 +23,7 @@ import android.content.res.Configuration;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.Display;
@@ -47,6 +48,20 @@ public class MainActivity extends AppCompatActivity {
 
         oldConfig = getResources().getConfiguration();
 //        registerReturn();
+
+        findViewById(R.id.button1).setOnClickListener(v -> {
+//            File file1 = new File("./../demoapp");
+//            Log.i(TAG, file1.getAbsolutePath());
+//            finish();
+            String clicked = Settings.Global.getString(getContentResolver(),
+                    "systemui_notification_clicked");
+            Log.i("clicked",clicked);
+
+            String clicked_id = Settings.Global.getString(getContentResolver(),
+                    "systemui_notification_clicked_with_msgid");
+            Log.i("clicked_id",clicked_id);
+
+        });
 
         findViewById(R.id.activity_local).setOnClickListener(v -> {
             Intent intent1 = new Intent(Intent.ACTION_VIEW);
@@ -94,11 +109,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent1);
         });
 
-        findViewById(R.id.button1).setOnClickListener(v -> {
-//            File file1 = new File("./../demoapp");
-//            Log.i(TAG, file1.getAbsolutePath());
-            finish();
-        });
+
     }
 
     private void openLocalActivity() {
