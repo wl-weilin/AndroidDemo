@@ -8,8 +8,8 @@ android {
 
     defaultConfig {
         applicationId = "com.demoapp.permissiondemo"
-        minSdk = 32
-        targetSdk = 34
+        minSdk = 28
+        targetSdk = 32
         versionCode = 1
         versionName = "1.0"
 

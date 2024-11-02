@@ -3,18 +3,18 @@ plugins {
 }
 
 // scan first android.p.framework.jar when JavaCompile
-gradle.projectsEvaluated {
-    tasks.withType(JavaCompile) {
-        // android studio 3.X 的版本只需要加入第一句代码
-        options.compilerArgs.add('-Xbootclasspath/p:libs/framework.jar')
-        // android studio 4.X 的版本需要以下代码
-        Set<File> fileSet = options.bootstrapClasspath.getFiles()
-        List<File> newFileList = new ArrayList<>()
-        newFileList.add(new File("./libs/framework.jar"))
-        newFileList.addAll(fileSet)
-        options.bootstrapClasspath = files(newFileList.toArray())
-    }
-}
+//gradle.projectsEvaluated {
+//    tasks.withType(JavaCompile) {
+//        // android studio 3.X 的版本只需要加入第一句代码
+//        options.compilerArgs.add('-Xbootclasspath/p:libs/framework.jar')
+//        // android studio 4.X 的版本需要以下代码
+//        Set<File> fileSet = options.bootstrapClasspath.getFiles()
+//        List<File> newFileList = new ArrayList<>()
+//        newFileList.add(new File("./libs/framework.jar"))
+//        newFileList.addAll(fileSet)
+//        options.bootstrapClasspath = files(newFileList.toArray())
+//    }
+//}
 
 android {
     namespace 'com.demoapp.interfacedemo'
@@ -43,12 +43,12 @@ android {
     }
 
     signingConfigs {
-        release {
-            storeFile file('aiStudyX2.jks')
-            storePassword 'iflytaistudyx2'
-            keyAlias 'aistudyx2key'
-            keyPassword 'iflytaistudyx2'
-        }
+//        release {
+//            storeFile file('aiStudyX2.jks')
+//            storePassword 'iflytaistudyx2'
+//            keyAlias 'aistudyx2key'
+//            keyPassword 'iflytaistudyx2'
+//        }
 
         debug {
             storeFile file('aiStudyX2.jks')

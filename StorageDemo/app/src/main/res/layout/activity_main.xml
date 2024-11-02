@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/title_app_internal"
+        layout="@layout/divider_line" />
+
+    <Button
+        android:id="@+id/internal_private"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="内部私有目录"
+        android:textAllCaps="false" />
+
+    <include
+        android:id="@+id/title_app_external"
+        layout="@layout/divider_line" />
+
+    <Button
+        android:id="@+id/external_private"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="外部私有目录"
+        android:textAllCaps="false" />
+
+    <include
+        android:id="@+id/title_public"
+        layout="@layout/divider_line" />
+
+    <Button
+        android:id="@+id/public_dir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="公共目录"
+        android:textAllCaps="false" />
+
+    <include
+        android:id="@+id/permission"
+        layout="@layout/divider_line" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/query_permission"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="查询读写权限"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/get_permission"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="申请读写权限"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+</LinearLayout>

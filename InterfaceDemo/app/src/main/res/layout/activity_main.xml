@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Button 1"
+        android:text="存在自由窗口？"
         android:textAllCaps="false" />
 
     <Button
@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="右侧"
+        android:text="右侧显示"
         android:textAllCaps="false" />
 
     <Button
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Button 3"
+        android:text="右侧隐藏"
         android:textAllCaps="false" />
 
     <Button
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="左侧"
+        android:text="左侧显示"
         android:textAllCaps="false" />
 
     <Button
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Button 5"
+        android:text="左侧隐藏"
         android:textAllCaps="false" />
 
 </LinearLayout>

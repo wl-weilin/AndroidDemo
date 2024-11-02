@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Button 1"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/open_url_this_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="打开网页：当前Activity"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/open_url_other_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="打开网页：WebViewActivity"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/open_url_default_brower"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="打开网页：默认浏览器"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/query_default_brower"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="查询默认浏览器"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/read_xml"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="读取配置文件"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/create_xml"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="创建配置文件"
+        android:textAllCaps="false" />
+
+    <WebView
+        android:id="@+id/web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+</LinearLayout>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/divider1"
+        layout="@layout/divider_line" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/create_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:text="Create File"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/write_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:text="Write File"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/view_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View File"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+    <include
+        android:id="@+id/divider2"
+        layout="@layout/divider_line" />
+
+    <Button
+        android:id="@+id/grant_uri_permission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="为其它APP\n授予Uri权限"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/grant_intent_permission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="授予Intent权限"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/share_provider_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FileProvider\n分享文件"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/share_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="通过file://\n分享文件"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test"
+        android:textAllCaps="false" />
+
+</LinearLayout>

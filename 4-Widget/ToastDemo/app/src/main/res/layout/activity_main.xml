@@ -7,6 +7,15 @@
     >
 
     <Button
+        android:id="@+id/target_sdk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="TargetSdk"
+        android:textAllCaps="false"
+        />
+
+    <Button
         android:id="@+id/normal_toast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,11 +25,58 @@
         />
 
     <Button
-        android:id="@+id/custom_toast"
+        android:id="@+id/custom_toast1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="自定义Toast"
+        android:text="自定义Toast1"
         android:textAllCaps="false"
         />
+
+    <Button
+        android:id="@+id/custom_toast2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="自定义Toast2: 讯飞样式"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/normal_snackbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="普通Snackbar"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/custom_snackbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="自定义Snackbar"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/snackbar_like_toast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="SnackBar: Toast样式(修改代码实现)"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/snackbar_like_toast_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="SnackBar: Toast样式(布局文件实现)"
+        android:textAllCaps="false"
+        />
+
+
 </LinearLayout>

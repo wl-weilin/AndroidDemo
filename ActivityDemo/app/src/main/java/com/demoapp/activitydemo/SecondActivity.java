@@ -26,13 +26,11 @@ public class SecondActivity extends AppCompatActivity {
             newActivity();
         });
 
-        final int[] count = {0};
-        findViewById(R.id.button1).setOnClickListener(v -> {
-            int sizeInBytes = 1024 * 1024 * 20 * (count[0]++); // 10M
-            ByteBuffer.allocateDirect(sizeInBytes);
-            Log.i(TAG, "内存使用上限:" + Runtime.getRuntime().maxMemory() / 1024 / 1024 + "MB");
-            Log.i(TAG, "已申请内存:" + Runtime.getRuntime().totalMemory() / 1024 / 1024 + "MB");
-            Log.i(TAG, "已申请但未使用:" + Runtime.getRuntime().freeMemory() / 1024 / 1024 + "MB");
+        findViewById(R.id.set_result).setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.putExtra("key", "value");
+            setResult(RESULT_CODE, intent);
+            finish();
         });
     }
 

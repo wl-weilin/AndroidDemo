@@ -23,28 +23,27 @@ import java.io.File;
 import java.util.Objects;
 
 public class DataBaseProvider extends ContentProvider {
-    public DataBaseProvider() {
-        Log.d(TAG, "DataBaseProvider Excuted");
-    }
+    private final String TAG = "DataBaseProvider";
+    // 注意与android:authorities一致
+    public static final String AUTHORITY = "com.demoapp.contentproviderdemo.provider";
 
+    private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     public static final int Person_Dir = 1;
     public static final int Person_Item = 2;
 
-    // 注意与android:authorities一致
-    public static final String AUTHORITY = "com.demoapp.contentproviderdemo.provider";
-    private static final UriMatcher uriMatcher;
-    private final String TAG = "DataBaseProvider";
+    //UriMatcher类就可以实现匹配内容URI的功能
+    static {
+        // addURI()把authority, path(组成Uri)和一个自定义代码传进去。
+        // 调用match()方法时，就可以通过ContentResolver传入的Uri匹配此处的Uri，返回所对应的自定义代码
+        uriMatcher.addURI(AUTHORITY, TableName, Person_Dir);
+        // #：表示匹配任意长度的数字,数字表示id
+        uriMatcher.addURI(AUTHORITY, TableName + "/#", Person_Item);
+    }
 
     private MyDatabaseHelper dbHelper;
 
-    //UriMatcher类就可以实现匹配内容URI的功能
-    static {
-        //#：表示匹配任意长度的数字,数字表示id
-        uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        //addURI()把authority, path(组成Uri)和一个自定义代码传进去。
-        //调用match()方法时，就可以通过ContentResolver传入的Uri匹配此处的Uri，返回所对应的自定义代码
-        uriMatcher.addURI(AUTHORITY, TableName, Person_Dir);
-        uriMatcher.addURI(AUTHORITY, TableName + "/#", Person_Item);
+    public DataBaseProvider() {
+        Log.d(TAG, "DataBaseProvider Excuted");
     }
 
     @Override
@@ -73,8 +72,6 @@ public class DataBaseProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
         Log.d(TAG, "query Excuted");
-//        printInfo();
-//        timeoutTask(8000);
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = null;

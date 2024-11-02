@@ -51,12 +51,16 @@ public class MainActivity extends AppCompatActivity {
             creatPopupWindow();
         });
 
-        findViewById(R.id.alert_dialog).setOnClickListener(v -> {
+        findViewById(R.id.default_dialog).setOnClickListener(v -> {
+            createDefaultDialog();
+        });
+
+        findViewById(R.id.default_alert_dialog).setOnClickListener(v -> {
             creatAlertDialog();
         });
 
         findViewById(R.id.bottom_dialog).setOnClickListener(v -> {
-            creatBottomDialog();
+            createCustomDialog();
         });
 
         findViewById(R.id.activity_dialog).setOnClickListener(v -> {
@@ -68,9 +72,18 @@ public class MainActivity extends AppCompatActivity {
             createFloatingWindow();
         });
 
+        findViewById(R.id.enter_pwd).setOnClickListener(v -> {
+            createPwdDialog();
+        });
+
         findViewById(R.id.button).setOnClickListener(v -> {
 
         });
+    }
+
+    private void createPwdDialog() {
+        Dialog dialog = new EnterWifiPwdDialog(this);
+        dialog.show();
     }
 
     private void openActivity() {
@@ -90,6 +103,16 @@ public class MainActivity extends AppCompatActivity {
         popupWindow.showAtLocation(findViewById(R.id.popup_window), Gravity.TOP, 0, 500);
     }
 
+    public void createDefaultDialog() {
+        // 创建 Dialog 对象
+        Dialog dialog = new Dialog(this, R.style.Dialog);
+
+        // 设置 Dialog 的标题
+        dialog.setTitle("这是一个对话框");
+
+        // 显示 Dialog
+        dialog.show();
+    }
 
     public void creatAlertDialog() {
         // context 必须是 Activity ，不能是 Application
@@ -114,15 +137,14 @@ public class MainActivity extends AppCompatActivity {
         dialog.setCancelable(false);
 
         // 显示在底部
-//        Window window = dialog.getWindow();
+        Window window = dialog.getWindow();
 //        window.setGravity(Gravity.BOTTOM);
 //        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
 
         dialog.show(); // 显示弹窗
     }
 
-    public void creatBottomDialog() {
-        // 创建 Dialog 对象
+    public void createCustomDialog() {
         Dialog dialog = new Dialog(this);
         // 设置 Dialog 的布局
         dialog.setContentView(R.layout.dialog_layout);
@@ -137,15 +159,15 @@ public class MainActivity extends AppCompatActivity {
 
         // 显示在底部
         Window window = dialog.getWindow();
-        window.setGravity(Gravity.BOTTOM);
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+//        window.setGravity(Gravity.BOTTOM);
+//        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
 
         // 设置按钮的点击事件
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 处理确定按钮的点击事件
-                finish();
+//                finish();
 //                dialog.dismiss(); // 关闭 Dialog
             }
         });

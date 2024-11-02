@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.demoapp.contentproviderdemo"
-    android:sharedUserId="com.abc"
-    android:sharedUserMaxSdkVersion="34"
-    tools:targetApi="tiramisu">
+    package="com.demoapp.contentproviderdemo">
 
     <application
         android:allowBackup="true"
@@ -16,7 +12,6 @@
 
         <provider
             android:name=".DataBaseProvider"
-            android:attributionTags=""
             android:authorities="com.demoapp.contentproviderdemo.provider"
             android:enabled="true"
             android:exported="true" >

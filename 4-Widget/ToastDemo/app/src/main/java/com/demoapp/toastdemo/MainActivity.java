@@ -2,38 +2,101 @@ package com.demoapp.toastdemo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.Configuration;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.ImageView;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
 public class MainActivity extends AppCompatActivity {
     String TAG = "ToastDemo";
+    SnackbarDemo mSnackbarDemo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mSnackbarDemo = new SnackbarDemo(this);
+
+        findViewById(R.id.target_sdk).setOnClickListener(v -> {
+            showTargetSdkInfo();
+        });
 
         findViewById(R.id.normal_toast).setOnClickListener(v -> {
             showNormalToast();
         });
 
-        findViewById(R.id.custom_toast).setOnClickListener(v -> {
+        findViewById(R.id.custom_toast1).setOnClickListener(v -> {
+            showCustomToast();
+        });
+
+        findViewById(R.id.custom_toast2).setOnClickListener(v -> {
             showCustomToast2();
         });
+
+        findViewById(R.id.normal_snackbar).setOnClickListener(v -> {
+            mSnackbarDemo.showNormalSnackbar(findViewById(R.id.normal_snackbar));
+        });
+
+        findViewById(R.id.custom_snackbar).setOnClickListener(v -> {
+            mSnackbarDemo.showCustomSnackbar(null);
+        });
+
+        findViewById(R.id.snackbar_like_toast).setOnClickListener(v -> {
+            mSnackbarDemo.showSnackbarLikeToast();
+        });
+
+        findViewById(R.id.snackbar_like_toast_layout).setOnClickListener(v -> {
+            mSnackbarDemo.showSnackbarLikeToastByLayout();
+        });
+    }
+
+    /**
+     * (1) 默认文本Toast且TargetSdk > Android 10。Toast显示会经过APP、system_server、SystemUI三个进程
+     * (2) 自定义View的Toast。Toast显示会经过APP、system_server、APP三个进程
+     * (3) 默认文本Toast且TargetSdk <= Android 10，同自定义的View
+     * (4) 默认文本Toast且OS版本 <= Android 10，同自定义的View
+     */
+    public void showTargetSdkInfo() {
+        if (Double.parseDouble(Build.VERSION.RELEASE) < 11) {
+            Toast.makeText(this, "OS Version=" + Double.parseDouble(Build.VERSION.RELEASE) + ": 非SystemUI流程",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // 表示APP的targetSdk
+        int targetSdkVersion;
+        try {
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            targetSdkVersion = packageInfo.applicationInfo.targetSdkVersion;
+        } catch (PackageManager.NameNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        if (targetSdkVersion <= Build.VERSION_CODES.Q) {
+            Toast.makeText(this, "APP targetSdk=" + targetSdkVersion + ": 非SystemUI流程",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "APP targetSdk=" + targetSdkVersion + ": SystemUI流程",
+                    Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     // 显示普通Toast
     public void showNormalToast() {
-        Toast.makeText(this, "一个普通Toast", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "普通Toast", Toast.LENGTH_SHORT).show();
     }
 
     // 显示自定义Toast

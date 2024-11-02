@@ -16,20 +16,31 @@
         />
 
     <Button
-        android:id="@+id/alert_dialog"
+        android:id="@+id/default_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="AlertDialog"
+        android:text="默认Dialog"
         android:textAllCaps="false"
         />
+
+    <Button
+        android:id="@+id/default_alert_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="默认AlertDialog"
+        android:textAllCaps="false"
+        />
+
+
 
     <Button
         android:id="@+id/bottom_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="底部 Dialog"
+        android:text="自定义Dialog"
         android:textAllCaps="false"
         />
 
@@ -48,6 +59,14 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="FloatingWindow"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/enter_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="连接WiFi"
         android:textAllCaps="false" />
 
     <Button
